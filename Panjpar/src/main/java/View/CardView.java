@@ -14,13 +14,26 @@ import java.io.File;
 public final class CardView extends javax.swing.JPanel {
     
     private Card card;
-    private String iconPath;
+    private String cardValue;
+    private final String iconPath;
     /**
      * Creates new form CardView
      * @param card
      */
     public CardView(Card card) {
         this.card = card;
+        switch(this.card.getValue()){
+            case 1: cardValue = "A";
+                break;
+            case 11: cardValue = "J";
+                break;
+            case 12: cardValue = "Q";
+                break;
+            case 13: cardValue = "K";
+                break;
+            default: cardValue = this.card.getValue()+"";
+                break;
+        }
         this.iconPath = new File("src/main/img/"+getCard().getType()+".png").getAbsolutePath();
         initComponents();
     }
@@ -54,11 +67,11 @@ public final class CardView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(100, 150));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel1.setText(getCard().getValue()+"");
+        jLabel1.setText(this.cardValue);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText(getCard().getValue()+"");
+        jLabel2.setText(this.cardValue);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(iconPath));
