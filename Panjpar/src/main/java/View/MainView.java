@@ -5,6 +5,7 @@
 package View;
 
 import Model.Deck;
+import java.io.File;
 
 /**
  *
@@ -13,6 +14,7 @@ import Model.Deck;
 public final class MainView extends javax.swing.JFrame {
 
     private final Deck deck;
+    private final String helpPath;
     /**
      * Creates new form MainView
      */
@@ -20,15 +22,22 @@ public final class MainView extends javax.swing.JFrame {
         deck = new Deck();
         deck.createDeck();
         deck.shuffle();
+        this.helpPath = new File("src/main/img/help.png").getAbsolutePath();
         initComponents();
         this.setLocationRelativeTo(null);
         createCardView();
     }
 
     public void createCardView(){
-        jPanel2.add((new BackCardView()));
-        for(int i = 0; i < 16; i++){
-            jPanel1.add((new CardView(deck.getNextCard())));
+        for(int i = 0; i < 5; i++){
+            jPanel3.add((new CardView(deck.getNextCard())));
+            jPanel2.add((new CardView(deck.getNextCard())));
+            jPanel1.add(new BackCardView());
+            jPanel4.add(new BackCardView());
+        }
+        for(int i = 0; i < 3; i++){
+            jPanel1.add(new VoidView());
+            jPanel4.add(new VoidView());
         }
     }
     
@@ -45,45 +54,83 @@ public final class MainView extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(240, 240, 240));
-        setPreferredSize(new java.awt.Dimension(800, 650));
+        setTitle("Panjpar");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setLayout(new java.awt.GridLayout(1, 5, 2, 2));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.GridLayout(1, 5, 1, 1));
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setLayout(new java.awt.GridLayout(1, 5, 2, 2));
 
-        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 102));
 
-        jPanel1.setBackground(new java.awt.Color(240, 240, 240));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 15, 2, 1));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 15, 2, 2));
         jScrollPane1.setViewportView(jPanel1);
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 15, 2, 2));
+        jScrollPane2.setViewportView(jPanel4);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(this.helpPath));
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1290, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 188, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,9 +168,12 @@ public final class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
