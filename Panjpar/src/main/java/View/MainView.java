@@ -4,42 +4,87 @@
  */
 package View;
 
+import Controller.Panjpar;
 import Model.Deck;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author jafet
  */
-public final class MainView extends javax.swing.JFrame {
+public final class MainView extends javax.swing.JFrame implements MouseListener{
 
     private final Deck deck;
     private final String helpPath;
+    private final Panjpar game;
+    private ArrayList<CardView> playerOne;
+    private ArrayList<CardView> playerTwo;
+    private ArrayList<CardView> oneTable;
+    private ArrayList<CardView> twoTable;
+    private ArrayList<BackCardView> back;
+    private Boolean round;
+    
     /**
      * Creates new form MainView
+     * @param game
      */
-    public MainView() {
+    public MainView(Panjpar game) {
+        this.round = true;
+        this.game = game;
         deck = new Deck();
         deck.createDeck();
         deck.shuffle();
         this.helpPath = new File("src/main/img/help.png").getAbsolutePath();
+        playerOne = new ArrayList<>();
+        playerTwo = new ArrayList<>();
+        oneTable = new ArrayList<>();
+        twoTable = new ArrayList<>();
+        back = new ArrayList<>();
         initComponents();
         this.setLocationRelativeTo(null);
-        createCardView();
     }
 
-    public void createCardView(){
-        for(int i = 0; i < 5; i++){
-            jPanel3.add((new CardView(deck.getNextCard())));
-            jPanel2.add((new CardView(deck.getNextCard())));
-            jPanel1.add(new BackCardView());
-            jPanel4.add(new BackCardView());
-        }
-        for(int i = 0; i < 3; i++){
-            jPanel1.add(new VoidView());
-            jPanel4.add(new VoidView());
-        }
+    private MainView() {
+        this.round = true;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void updateUI(){
+       jPanel1.removeAll();
+       jPanel2.removeAll();
+       jPanel3.removeAll();
+       jPanel4.removeAll();
+       playerOne.removeAll(playerOne);
+       playerTwo.removeAll(playerTwo);
+       oneTable.removeAll(oneTable);
+       twoTable.removeAll(twoTable);
+       back.removeAll(back);
+       if(!round){
+           for(int i = 0; i < game.getPlayerTwo().getHand().size(); i++){
+               playerTwo.add(new CardView(game.getPlayerTwo().getHand().get(i)));
+               playerTwo.get(i).addMouseListener(this);
+               jPanel4.add(playerTwo.get(i));
+           }
+           for(int i = 0; i < game.getPlayerOne().getHand().size(); i++){
+               back.add(new BackCardView());
+               jPanel1.add(back.get(i));
+           }
+       } else {
+           for(int i = 0; i < game.getPlayerOne().getHand().size(); i++){
+               playerOne.add(new CardView(game.getPlayerOne().getHand().get(i)));
+               playerOne.get(i).addMouseListener(this);
+               jPanel1.add(playerOne.get(i));
+           }
+           for(int i = 0; i < game.getPlayerTwo().getHand().size(); i++){
+               back.add(new BackCardView());
+               jPanel4.add(back.get(i));
+           }
+       }
+       this.validate();
     }
     
     /**
@@ -58,6 +103,7 @@ public final class MainView extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panjpar");
@@ -93,24 +139,33 @@ public final class MainView extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(314, 314, 314)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2))))
+                .addGap(33, 33, 33)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,9 +179,14 @@ public final class MainView extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -186,6 +246,11 @@ public final class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        round = !round;
+        updateUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,6 +288,7 @@ public final class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -230,4 +296,37 @@ public final class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(round){
+            for(int i = 0; i < playerOne.size(); i++){
+                if(e.getSource() == playerOne.get(i)){
+                    System.out.println("Carta Player 1: "+playerOne.get(i).getCard().toString());
+                }
+            }
+        } else {
+            for(int i = 0; i < playerTwo.size(); i++){
+                if(e.getSource() == playerTwo.get(i)){
+                    System.out.println("Carta Player 2: "+playerTwo.get(i).getCard().toString());
+                }
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 }
