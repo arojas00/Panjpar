@@ -114,7 +114,7 @@ public class Player {
     }*/
     
     public void fillHand(Deck deck){
-        while(!deck.isEmpty() && hand.size() > 5){
+        while(!deck.isEmpty() && hand.size() < 5){
             hand.add(deck.getNextCard());
         }
     }
