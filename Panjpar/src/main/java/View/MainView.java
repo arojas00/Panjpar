@@ -6,6 +6,7 @@ package View;
 
 import Model.Deck;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,6 +82,11 @@ public final class MainView extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(this.helpPath));
         jButton1.setBorder(null);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -129,8 +135,56 @@ public final class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Attackers: \n“Throw” or play 1, 3, "
+                + "or 5 cards in their hand. This is done by placing the cards "
+                + "side-by-side and face-up on the table.\n"
+                + "  *In a single card attack, any card may be played.\n"
+                + "  *On a three card attack, there must be a pair + "
+                + "an odd card. For example, K-K-7. Or, they may play a "
+                + "three of a kind, K-K-K.\n"
+                + "  *Five card attacks can consist of two pairs + an odd "
+                + "card (K-K-A-A-5) A full house is also legal 5 card play "
+                + "(K-K-K-A-A), as is playing a four of a kind + "
+                + "an odd card (5-5-5-5-2).\n\n"+"Defenders: \n"
+                + "Have the chance to “kill” or beat these cards "
+                + "played by playing cards from their hand on top of "
+                + "attacking cards. Cards are beaten by a higher ranking "
+                + "card of the same suit. Non-trump cards are beaten "
+                + "by cards which are trumps (trump suit).\n\n"
+                + "Attack cards that are successfully annihilated "
+                + "and the cards used by the defender are put off "
+                + "to the side and are not used in play until "
+                + "the next deal. If a defender is able to beat "
+                + "all the cards played by the attacker, "
+                + "they attack in the next round.\n"
+                + "However, if the defender was unable to "
+                + "beat all the attack cards, or none at all, "
+                + "those cards are added to the defender’s hand. "
+                + "The attacking player attacks again.\n"
+                + "You are not required to beat all the "
+                + "cards you can. You may strategically "
+                + "lose to gain certain cards, like "
+                + "trump cards.\n"+"This play continues "
+                + "until the stock pile is exhausted. Players must "
+                + "both have at least 5 cards in the hand prior to "
+                + "an attack. This is for both attacking and defending. "
+                + "In the event you have less than 5 cards, draw the "
+                + "remainder from the stock.\n\n"
+                + "The End of the Game: \n"
+                + "The last card drawn from the stock is the trump indicator "
+                + "card. After, play continues without drawing "
+                + "for a replacement.\n"
+                + "You may not attack your opponent with more cards than they"
+                + " have in hand. Once a player has no more cards, gameplay"
+                + " ends after that battle. The player who still has cards "
+                + "in hand is the loser.\n"
+                + "However, if both players use all their cards in the "
+                + "same battle, the game is considered to be a draw.", "Rules", 1);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
