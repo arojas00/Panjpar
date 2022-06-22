@@ -5,7 +5,6 @@
 package View;
 
 import Controller.Panjpar;
-import Model.Deck;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -18,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public final class MainView extends javax.swing.JFrame implements MouseListener{
 
-    private final Deck deck;
     private final String helpPath;
     private final Panjpar game;
     private ArrayList<CardView> playerOne;
@@ -35,9 +33,6 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     public MainView(Panjpar game) {
         this.round = true;
         this.game = game;
-        deck = new Deck();
-        deck.createDeck();
-        deck.shuffle();
         this.helpPath = new File("src/main/img/help.png").getAbsolutePath();
         playerOne = new ArrayList<>();
         playerTwo = new ArrayList<>();
@@ -46,10 +41,10 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         back = new ArrayList<>();
         initComponents();
         this.setLocationRelativeTo(null);
+        jPanel5.add(new CardView(this.game.getDeck().getTrumpCard()));
     }
 
     private MainView() {
-        this.round = true;
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -63,26 +58,90 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
        oneTable.removeAll(oneTable);
        twoTable.removeAll(twoTable);
        back.removeAll(back);
-       if(!round){
-           for(int i = 0; i < game.getPlayerTwo().getHand().size(); i++){
-               playerTwo.add(new CardView(game.getPlayerTwo().getHand().get(i)));
-               playerTwo.get(i).addMouseListener(this);
-               jPanel4.add(playerTwo.get(i));
-           }
-           for(int i = 0; i < game.getPlayerOne().getHand().size(); i++){
-               back.add(new BackCardView());
-               jPanel1.add(back.get(i));
-           }
+       if(round){
+        if(this.game.getAttacker() == this.game.getPlayerOne()){
+            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                playerOne.add(new CardView(this.game.getAttacker().getHand()
+                        .get(i)));
+                playerOne.get(i).addMouseListener(this);
+                jPanel1.add(playerOne.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                oneTable.add(new CardView(this.game.getAttacker().getTable()
+                        .get(i)));
+                oneTable.get(i).addMouseListener(this);
+                jPanel2.add(oneTable.get(i));
+            }
+            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                back.add(new BackCardView());
+                jPanel4.add(back.get(i));
+            }
+        } else {
+            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                playerTwo.add(new CardView(this.game.getAttacker().getHand()
+                        .get(i)));
+                playerTwo.get(i).addMouseListener(this);
+                jPanel4.add(playerTwo.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                twoTable.add(new CardView(this.game.getAttacker().getTable()
+                        .get(i)));
+                twoTable.get(i).addMouseListener(this);
+                jPanel3.add(oneTable.get(i));
+            }
+            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                back.add(new BackCardView());
+                jPanel1.add(back.get(i));
+            }
+        }
        } else {
-           for(int i = 0; i < game.getPlayerOne().getHand().size(); i++){
-               playerOne.add(new CardView(game.getPlayerOne().getHand().get(i)));
-               playerOne.get(i).addMouseListener(this);
-               jPanel1.add(playerOne.get(i));
-           }
-           for(int i = 0; i < game.getPlayerTwo().getHand().size(); i++){
-               back.add(new BackCardView());
-               jPanel4.add(back.get(i));
-           }
+        if(this.game.getAttacker() == this.game.getPlayerOne()){
+            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                playerTwo.add(new CardView(this.game.getDefender().getHand()
+                        .get(i)));
+                playerTwo.get(i).addMouseListener(this);
+                jPanel4.add(playerTwo.get(i));
+            }
+            for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
+                twoTable.add(new CardView(this.game.getDefender().getTable()
+                        .get(i)));
+                twoTable.get(i).addMouseListener(this);
+                jPanel3.add(twoTable.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                oneTable.add(new CardView(this.game.getAttacker().getTable()
+                        .get(i)));
+                oneTable.get(i).addMouseListener(this);
+                jPanel2.add(oneTable.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                back.add(new BackCardView());
+                jPanel1.add(back.get(i));
+            }
+        } else {
+            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                playerOne.add(new CardView(this.game.getDefender().getHand()
+                        .get(i)));
+                playerOne.get(i).addMouseListener(this);
+                jPanel1.add(playerOne.get(i));
+            }
+            for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
+                oneTable.add(new CardView(this.game.getDefender().getTable()
+                        .get(i)));
+                oneTable.get(i).addMouseListener(this);
+                jPanel2.add(oneTable.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                twoTable.add(new CardView(this.game.getAttacker().getTable()
+                        .get(i)));
+                twoTable.get(i).addMouseListener(this);
+                jPanel3.add(twoTable.get(i));
+            }
+            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                back.add(new BackCardView());
+                jPanel4.add(back.get(i));
+            }
+        }
        }
        this.validate();
     }
@@ -104,6 +163,8 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panjpar");
@@ -139,33 +200,47 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jButton2.setText("Play");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jPanel5.setEnabled(false);
+        jPanel5.setLayout(new java.awt.GridLayout(1, 1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setText("Trump Card");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))))
-                .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2))
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(99, 99, 99)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,15 +254,22 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                         .addGap(46, 46, 46)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(120, 120, 120))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -209,12 +291,12 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                 + "Have the chance to “kill” or beat these cards "
                 + "played by playing cards from their hand on top of "
                 + "attacking cards. Cards are beaten by a higher ranking "
-                + "card of the same suit. Non-trump cards are beaten "
+                + "card of the same suit. Non-trump \ncards are beaten "
                 + "by cards which are trumps (trump suit).\n\n"
                 + "Attack cards that are successfully annihilated "
                 + "and the cards used by the defender are put off "
                 + "to the side and are not used in play until "
-                + "the next deal. If a defender is able to beat "
+                + "the next deal. If a defender is able to \nbeat "
                 + "all the cards played by the attacker, "
                 + "they attack in the next round.\n"
                 + "However, if the defender was unable to "
@@ -228,7 +310,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                 + "until the stock pile is exhausted. Players must "
                 + "both have at least 5 cards in the hand prior to "
                 + "an attack. This is for both attacking and defending. "
-                + "In the event you have less than 5 cards, draw the "
+                + "In the event you \nhave less than 5 cards, draw the "
                 + "remainder from the stock.\n\n"
                 + "The End of the Game: \n"
                 + "The last card drawn from the stock is the trump indicator "
@@ -289,27 +371,26 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(round){
-            for(int i = 0; i < playerOne.size(); i++){
-                if(e.getSource() == playerOne.get(i)){
-                    System.out.println("Carta Player 1: "+playerOne.get(i).getCard().toString());
-                }
+        for(int i = 0; i < playerOne.size(); i++){
+            if(e.getSource() == playerOne.get(i)){
+                System.out.println("Carta Player 1: "+playerOne.get(i).getCard().toString());
             }
-        } else {
-            for(int i = 0; i < playerTwo.size(); i++){
-                if(e.getSource() == playerTwo.get(i)){
-                    System.out.println("Carta Player 2: "+playerTwo.get(i).getCard().toString());
-                }
+        }
+        for(int i = 0; i < playerTwo.size(); i++){
+            if(e.getSource() == playerTwo.get(i)){
+                System.out.println("Carta Player 2: "+playerTwo.get(i).getCard().toString());
             }
         }
     }
