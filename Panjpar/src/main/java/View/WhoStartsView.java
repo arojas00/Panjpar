@@ -17,8 +17,13 @@ public class WhoStartsView extends javax.swing.JFrame {
      * @param game
      */
     public WhoStartsView(Panjpar game) {
-        initComponents();
         this.game = game;
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    private WhoStartsView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -111,11 +116,15 @@ public class WhoStartsView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         game.setWhoStarts(1);
+        game.getViewM().updateUI();
+        game.getViewM().enable(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         game.setWhoStarts(2);
+        game.getViewM().updateUI();
+        game.getViewM().enable(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
