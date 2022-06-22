@@ -13,19 +13,20 @@ import View.WhoStartsView;
  *
  * @author adrian
  */
-public class Panjpar {
+public final class Panjpar {
     private Player playerOne;
     private Player playerTwo;
     private Player attacker;
     private Player defender;
     private Deck deck;
     private MainView viewM;
-    private WhoStartsView viewP;
+    private final WhoStartsView viewP;
     
     public Panjpar(){
         playerOne = new Player("playerOne");
         playerTwo = new Player("playerTwo");
         deck = new Deck();
+        this.prepareDeck();
         viewM = new MainView(this);
         viewM.setVisible(false);
         viewP = new WhoStartsView(this);
@@ -73,22 +74,49 @@ public class Panjpar {
             defender = playerOne;
         }
     }
+
+    public Player getAttacker() {
+        return attacker;
+    }
+
+    public void setAttacker(Player attacker) {
+        this.attacker = attacker;
+    }
+
+    public Player getDefender() {
+        return defender;
+    }
+
+    public void setDefender(Player defender) {
+        this.defender = defender;
+    }
     
     public void run() {
-        startGame();
         viewM.setVisible(true);
+        viewM.enable(false);
         viewP.setVisible(true);
+        startGame();
     }
     
     public void startGame(){
-        prepareDeck(deck);
+        prepareDeck();
         playerOne.fillHand(deck);
         playerTwo.fillHand(deck);
-        viewM.updateUI();
     }
-    public void prepareDeck(Deck deck){
+    
+    public void prepareDeck(){
         deck.createDeck();
         deck.shuffle();
+    }
+    
+    public void changeRol(){
+        if(attacker == playerOne){
+            attacker = playerTwo;
+            defender = playerOne;
+        } else {
+            attacker = playerOne;
+            defender = playerTwo;
+        }
     }
     
     public static void main(String[] args){
