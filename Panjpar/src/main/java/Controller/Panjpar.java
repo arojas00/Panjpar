@@ -7,6 +7,7 @@ package Controller;
 import Model.Player;
 import Model.Deck;
 import View.MainView;
+import View.WhoStartsView;
 
 /**
  *
@@ -15,8 +16,11 @@ import View.MainView;
 public class Panjpar {
     private Player playerOne;
     private Player playerTwo;
+    private Player attacker;
+    private Player defender;
     private Deck deck;
     private MainView viewM;
+    private WhoStartsView viewP;
     
     public Panjpar(){
         playerOne = new Player("playerOne");
@@ -24,6 +28,8 @@ public class Panjpar {
         deck = new Deck();
         viewM = new MainView(this);
         viewM.setVisible(false);
+        viewP = new WhoStartsView(this);
+        viewP.setVisible(false);
     }
 
     public Player getPlayerOne() {
@@ -58,9 +64,20 @@ public class Panjpar {
         this.viewM = viewM;
     }
     
+    public void setWhoStarts(int init){
+        if(init == 1){
+            attacker = playerOne;
+            defender = playerTwo;
+        } else if(init == 2){
+            attacker = playerTwo;
+            defender = playerOne;
+        }
+    }
+    
     public void run() {
         startGame();
         viewM.setVisible(true);
+        viewP.setVisible(true);
     }
     
     public void startGame(){
