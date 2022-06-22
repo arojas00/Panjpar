@@ -72,4 +72,8 @@ public class Deck {
         return aux;
     }
     
+    public Card getTrumpCard(){
+        return deck.get(0);
+    }
+    
 }
