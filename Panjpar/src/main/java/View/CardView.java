@@ -14,7 +14,6 @@ import java.io.File;
 public final class CardView extends javax.swing.JPanel {
     
     private Card card;
-    private String cardValue;
     private final String iconPath;
     /**
      * Creates new form CardView
