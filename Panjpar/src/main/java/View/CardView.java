@@ -5,25 +5,27 @@
 package View;
 
 import Model.Card;
-import java.io.File;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public final class CardView extends javax.swing.JPanel {
-    
+
     private Card card;
-    private final String iconPath;
+
     /**
      * Creates new form CardView
      * @param card Carta
      */
     public CardView(Card card) {
         this.card = card;
-        this.iconPath = new File("src/main/img/"+getCard().getType()+"-"+
-                getCard().getValue()+".png").getAbsolutePath();
+        ImageIcon iconobtn = new ImageIcon("Panjpar/src/main/img/"+getCard().getType()+"-"+
+                getCard().getValue()+".png");
+        
         initComponents();
+        jLabel3.setIcon(iconobtn);
     }
 
     public Card getCard() {
@@ -53,7 +55,6 @@ public final class CardView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(100, 150));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(iconPath));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
