@@ -107,9 +107,9 @@ public class Player {
                 break;
         }
         return valid;
-    }
-    
-    public void checkPlay(ArrayList<Card> otherTable){
+    }*/
+    /*
+    public void checkPlay(Player otherPlayer){
         
     }*/
     
