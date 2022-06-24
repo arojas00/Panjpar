@@ -35,7 +35,7 @@ public final class Panjpar {
     
     /**
      * Metodo devuelve el jugador uno
-     * @return playerOne
+     * @return playerOne Jugador uno
      */
 
     public Player getPlayerOne() {
@@ -44,7 +44,7 @@ public final class Panjpar {
     
     /**
      * Metodo selecciona el jugador uno
-     * @param playerOne
+     * @param playerOne Player
      */
     public void setPlayerOne(Player playerOne) {
         this.playerOne = playerOne;
@@ -52,7 +52,7 @@ public final class Panjpar {
     
     /**
      * Metodo devuelve el jugador dos
-     * @return playerTwo
+     * @return playerTwo jugador dos
      */
     public Player getPlayerTwo() {
         return playerTwo;
@@ -60,7 +60,7 @@ public final class Panjpar {
     
     /**
      * Metodo selecciona el jugador dos
-     * @return playerTwo
+     * @param playerTwo Player
      */
     public void setPlayerTwo(Player playerTwo) {
         this.playerTwo = playerTwo;
@@ -68,7 +68,7 @@ public final class Panjpar {
     
     /**
      * Metodo devuelve el deck
-     * @return deck
+     * @return deck mazo de cartas
      */
     public Deck getDeck() {
         return deck;
@@ -76,7 +76,7 @@ public final class Panjpar {
     
     /**
      * Metodo selecciona el jugador uno
-     * @param deck
+     * @param deck Mazo de cartas
      */
     public void setDeck(Deck deck) {
         this.deck = deck;
@@ -84,7 +84,7 @@ public final class Panjpar {
 
     /**
      * Metodo devuelve la interfaz utilizada
-     * @return viewM
+     * @return viewM MainView
      */
     public MainView getViewM() {
         return viewM;
@@ -92,7 +92,7 @@ public final class Panjpar {
 
     /**
      * Metodo establece la interfaz
-     * @param viewM
+     * @param viewM MainView
      */
     public void setViewM(MainView viewM) {
         this.viewM = viewM;
@@ -100,7 +100,7 @@ public final class Panjpar {
     
     /**
      * Metodo establece que jugador comienza atacando
-     * @param init
+     * @param init Entero
      */
     public void setWhoStarts(int init){
         if(init == 1){
@@ -114,7 +114,7 @@ public final class Panjpar {
     
     /**
      * Metodo devuelve el atacante
-     * @return attacker
+     * @return attacker Player
      */
     public Player getAttacker() {
         return attacker;
@@ -122,7 +122,7 @@ public final class Panjpar {
     
 /**
      * Metodo selecciona al atacante
-     * @param attacker
+     * @param attacker Player
      */
     public void setAttacker(Player attacker) {
         this.attacker = attacker;
@@ -130,7 +130,7 @@ public final class Panjpar {
     
     /**
      * Metodo devuelve el defensor
-     * @return defender
+     * @return defender Player
      */
     public Player getDefender() {
         return defender;
@@ -138,7 +138,7 @@ public final class Panjpar {
     
     /**
      * Metodo selecciona al defensor
-     * @param defender
+     * @param defender Player
      */
     public void setDefender(Player defender) {
         this.defender = defender;
@@ -182,11 +182,11 @@ public final class Panjpar {
             defender = playerTwo;
         }
     }
+    
     /**
      * Metodo main
-     * @param args
+     * @param args String[]
      */
-    
     public static void main(String[] args){
         Panjpar game = new Panjpar();
         game.run();

@@ -17,7 +17,7 @@ public class Player {
 
     /**
      * Metodo constructor de player
-     * @param id
+     * @param id Nombre del jugador
      */
     public Player(String id) {
         this.id = id;
@@ -27,7 +27,7 @@ public class Player {
     
     /**
      * Metodo devuelve el id
-     * @return id
+     * @return id String
      */
     public String getId() {
         return id;
@@ -35,7 +35,7 @@ public class Player {
 
     /**
      * Metodo establece el id
-     * @param id
+     * @param id String
      */
     public void setId(String id) {
         this.id = id;
@@ -43,7 +43,7 @@ public class Player {
 
     /**
      * Metodo devuelve la mano
-     * @return hand
+     * @return hand Grupo de cartas
      */
     public ArrayList<Card> getHand() {
         return hand;
@@ -51,7 +51,7 @@ public class Player {
 
     /**
      * Metodo establece la mano
-     * @param hand
+     * @param hand Grupo de cartas
      */
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
@@ -59,7 +59,7 @@ public class Player {
 
     /**
      * Metodo devuelve la cartas de la mesa
-     * @return table
+     * @return table Grupo de cartas
      */
     public ArrayList<Card> getTable() {
         return table;
@@ -67,7 +67,7 @@ public class Player {
 
     /**
      * Metodo establece la cartas de la mesa
-     * @param table
+     * @param table Grupo de cartas
      */
     public void setTable(ArrayList<Card> table) {
         this.table = table;
@@ -75,6 +75,7 @@ public class Player {
 
     /**
      * Metodo para pasar cartas de la mano a la mesa y viceversa
+     * @param card Carta seleccionada
      */
     public void selectCard(Card card){
         int position = -1;
@@ -146,7 +147,7 @@ public class Player {
     
     /**
      * Metodo completar numero minimo de cartas
-     * @param deck
+     * @param deck Mazo de cartas
      */
     public void fillHand(Deck deck){
         while(!deck.isEmpty() && hand.size() < 5){

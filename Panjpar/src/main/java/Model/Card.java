@@ -21,7 +21,7 @@ public class Card {
     
     /**
      * Metodo devuelve el id
-     * @return id
+     * @return id int
      */
     public int getId() {
         return id;
@@ -29,7 +29,7 @@ public class Card {
     
     /**
      * Metodo establece el id
-     * @param id
+     * @param id int
      */
     public void setId(int id) {
         this.id = id;
@@ -37,7 +37,7 @@ public class Card {
     
     /**
      * Metodo devuelve el tipo
-     * @return type
+     * @return type int
      */
     public int getType() {
         return type;
@@ -45,7 +45,7 @@ public class Card {
     
     /**
      * Metodo establece el tipo
-     * @param type
+     * @param type int
      */
     public void setType(int type) {
         this.type = type;
@@ -53,7 +53,7 @@ public class Card {
     
     /**
      * Metodo devuelve el valor
-     * @return value
+     * @return value int
      */
     public int getValue() {
         return value;
@@ -61,7 +61,7 @@ public class Card {
     
     /**
      * Metodo establece el valor
-     * @param value
+     * @param value int
      */
     public void setValue(int value) {
         this.value = value;
@@ -69,7 +69,7 @@ public class Card {
     
     /**
      *
-     * @return
+     * @return String
      */
     @Override
     public String toString(){

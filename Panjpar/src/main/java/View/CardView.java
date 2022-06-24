@@ -17,7 +17,7 @@ public final class CardView extends javax.swing.JPanel {
     private final String iconPath;
     /**
      * Creates new form CardView
-     * @param card
+     * @param card Carta
      */
     public CardView(Card card) {
         this.card = card;

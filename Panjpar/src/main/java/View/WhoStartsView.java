@@ -14,7 +14,7 @@ public class WhoStartsView extends javax.swing.JFrame {
 
     /**
      * Creates new form WhoStartsView
-     * @param game
+     * @param game Copia del controlador
      */
     public WhoStartsView(Panjpar game) {
         this.game = game;
@@ -164,10 +164,8 @@ public class WhoStartsView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WhoStartsView().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new WhoStartsView().setVisible(true);
         });
     }
 

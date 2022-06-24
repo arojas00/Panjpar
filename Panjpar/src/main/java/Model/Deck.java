@@ -24,7 +24,7 @@ public class Deck {
     
     /**
      * Metodo devuelve el deck
-     * @return deck
+     * @return deck Mazo de cartas
      */
     public ArrayList<Card> getDeck() {
         return deck;
@@ -32,7 +32,7 @@ public class Deck {
     
     /**
      * Metodo establece el deck
-     * @param deck
+     * @param deck Mazo de cartas
      */
     public void setDeck(ArrayList<Card> deck) {
         this.deck = deck;
@@ -67,7 +67,7 @@ public class Deck {
     
     /**
      * Metodo devuelve la carta siguiente del deck
-     * @return aux
+     * @return aux Carta
      */
     public Card getNextCard(){
         Card aux = null;
@@ -84,7 +84,7 @@ public class Deck {
     
     /**
      * Metodo devuelve si el deck esta vacio
-     * @return bool
+     * @return aux Bool
      */
     public boolean isEmpty() {
         Boolean aux = false;
@@ -96,7 +96,7 @@ public class Deck {
     
     /**
      * Metodo devuelve la carta "trampa"
-     * @return card
+     * @return card Posicion 0 del mazo
      */
     public Card getTrumpCard(){
         return deck.get(0);

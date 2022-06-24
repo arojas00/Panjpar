@@ -28,7 +28,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     
     /**
      * Creates new form MainView
-     * @param game
+     * @param game Copia del controlador
      */
     public MainView(Panjpar game) {
         this.round = true;
