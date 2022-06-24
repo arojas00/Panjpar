@@ -17,7 +17,7 @@ public class BackCardView extends javax.swing.JPanel {
      * Creates new form BackCardView
      */
     public BackCardView() {
-        this.iconPath = new File("src/main/img/backView.jpg").getAbsolutePath();
+        this.iconPath = new File("src/main/img/backView.png").getAbsolutePath();
         initComponents();
     }
 
@@ -32,10 +32,12 @@ public class BackCardView extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(100, 150));
         setMinimumSize(new java.awt.Dimension(100, 150));
         setPreferredSize(new java.awt.Dimension(100, 150));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(iconPath));
         jLabel2.setMaximumSize(new java.awt.Dimension(100, 150));
         jLabel2.setMinimumSize(new java.awt.Dimension(100, 150));
