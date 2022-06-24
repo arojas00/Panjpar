@@ -60,53 +60,101 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
        back.removeAll(back);
        if(round){
         if(this.game.getAttacker() == this.game.getPlayerOne()){
-            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
-                playerOne.add(new CardView(this.game.getAttacker().getHand()
-                        .get(i)));
-                playerOne.get(i).addMouseListener(this);
-                jPanel1.add(playerOne.get(i));
+            if(!this.game.getAttacker().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                    playerOne.add(new CardView(this.game.getAttacker().getHand()
+                            .get(i)));
+                    playerOne.get(i).addMouseListener(this);
+                    jPanel1.add(playerOne.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel1.add(new VoidView());
+               }
             }
-            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
-                oneTable.add(new CardView(this.game.getAttacker().getTable()
-                        .get(i)));
-                oneTable.get(i).addMouseListener(this);
-                jPanel2.add(oneTable.get(i));
+            if(!this.game.getAttacker().getTable().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                    oneTable.add(new CardView(this.game.getAttacker().getTable()
+                            .get(i)));
+                    oneTable.get(i).addMouseListener(this);
+                    jPanel2.add(oneTable.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel2.add(new VoidView());
+                }
             }
-            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
-                back.add(new BackCardView());
-                jPanel4.add(back.get(i));
+            if(!this.game.getDefender().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                    back.add(new BackCardView());
+                    jPanel4.add(back.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel4.add(new VoidView());
+                }
             }
         } else {
-            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
-                playerTwo.add(new CardView(this.game.getAttacker().getHand()
-                        .get(i)));
-                playerTwo.get(i).addMouseListener(this);
-                jPanel4.add(playerTwo.get(i));
+            if(!this.game.getAttacker().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                    playerTwo.add(new CardView(this.game.getAttacker().getHand()
+                           .get(i)));
+                    playerTwo.get(i).addMouseListener(this);
+                    jPanel4.add(playerTwo.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel4.add(new VoidView());
+                }
             }
-            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
-                twoTable.add(new CardView(this.game.getAttacker().getTable()
-                        .get(i)));
-                twoTable.get(i).addMouseListener(this);
-                jPanel3.add(oneTable.get(i));
+            if(!this.game.getAttacker().getTable().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                    twoTable.add(new CardView(this.game.getAttacker().getTable()
+                            .get(i)));
+                    twoTable.get(i).addMouseListener(this);
+                    jPanel3.add(twoTable.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel3.add(new VoidView());
+                }
             }
-            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
-                back.add(new BackCardView());
-                jPanel1.add(back.get(i));
+            if(!this.game.getDefender().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                    back.add(new BackCardView());
+                    jPanel1.add(back.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel1.add(new VoidView());
+                }
             }
         }
        } else {
         if(this.game.getAttacker() == this.game.getPlayerOne()){
-            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
-                playerTwo.add(new CardView(this.game.getDefender().getHand()
-                        .get(i)));
-                playerTwo.get(i).addMouseListener(this);
-                jPanel4.add(playerTwo.get(i));
+            if(!this.game.getDefender().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                    playerTwo.add(new CardView(this.game.getDefender().getHand()
+                            .get(i)));
+                    playerTwo.get(i).addMouseListener(this);
+                    jPanel4.add(playerTwo.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel4.add(new VoidView());
+               }
             }
-            for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
-                twoTable.add(new CardView(this.game.getDefender().getTable()
-                        .get(i)));
-                twoTable.get(i).addMouseListener(this);
-                jPanel3.add(twoTable.get(i));
+            if(!this.game.getDefender().getTable().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
+                    twoTable.add(new CardView(this.game.getDefender().getTable()
+                            .get(i)));
+                    twoTable.get(i).addMouseListener(this);
+                    jPanel3.add(twoTable.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel3.add(new VoidView());
+               }
             }
             for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
                 oneTable.add(new CardView(this.game.getAttacker().getTable()
@@ -114,22 +162,40 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                 oneTable.get(i).addMouseListener(this);
                 jPanel2.add(oneTable.get(i));
             }
-            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
-                back.add(new BackCardView());
-                jPanel1.add(back.get(i));
+            if(!this.game.getAttacker().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                    back.add(new BackCardView());
+                    jPanel1.add(back.get(i));
+                }
+            } else {
+               for(int i = 0; i < 5; i++){
+                   jPanel1.add(new VoidView());
+               }
             }
         } else {
-            for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
-                playerOne.add(new CardView(this.game.getDefender().getHand()
-                        .get(i)));
-                playerOne.get(i).addMouseListener(this);
-                jPanel1.add(playerOne.get(i));
+            if(!this.game.getDefender().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getHand().size(); i++){
+                    playerOne.add(new CardView(this.game.getDefender().getHand()
+                            .get(i)));
+                    playerOne.get(i).addMouseListener(this);
+                    jPanel1.add(playerOne.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                   jPanel1.add(new VoidView());
+               }
             }
-            for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
-                oneTable.add(new CardView(this.game.getDefender().getTable()
-                        .get(i)));
-                oneTable.get(i).addMouseListener(this);
-                jPanel2.add(oneTable.get(i));
+            if(!this.game.getDefender().getTable().isEmpty()){
+                for(int i = 0; i < this.game.getDefender().getTable().size(); i++){
+                    oneTable.add(new CardView(this.game.getDefender().getTable()
+                            .get(i)));
+                    oneTable.get(i).addMouseListener(this);
+                    jPanel2.add(oneTable.get(i));
+                }
+            }  else {
+                for(int i = 0; i < 5; i++){
+                   jPanel2.add(new VoidView());
+               }
             }
             for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
                 twoTable.add(new CardView(this.game.getAttacker().getTable()
@@ -137,9 +203,15 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                 twoTable.get(i).addMouseListener(this);
                 jPanel3.add(twoTable.get(i));
             }
-            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
-                back.add(new BackCardView());
-                jPanel4.add(back.get(i));
+            if(!this.game.getAttacker().getHand().isEmpty()){
+                for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                    back.add(new BackCardView());
+                    jPanel4.add(back.get(i));
+                }
+            } else {
+                for(int i = 0; i < 5; i++){
+                    jPanel4.add(new VoidView());
+                }
             }
         }
        }
@@ -155,6 +227,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -165,6 +238,17 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panjpar");
@@ -375,6 +459,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
@@ -382,15 +467,60 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if(this.round == true){
-            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
-                if(e.getSource() == this.game.getAttacker().getHand().get(i)){
-                    this.game.getAttacker().selectCard(this.game.getAttacker().getHand().get(i));    
-                    return;
+            if(this.game.getAttacker() == this.game.getPlayerOne()){
+                for(int i = 0; i < this.playerOne.size(); i++){
+                    if(e.getSource() == this.playerOne.get(i)){
+                        this.game.getAttacker().selectCard(this.playerOne.get(i).getCard());    
+                        this.updateUI();
+                    }
                 }
+                for(int i = 0; i < this.oneTable.size(); i++){
+                     if(e.getSource() == this.oneTable.get(i)){
+                        this.game.getAttacker().selectCard(this.oneTable.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+            } else {
+                for(int i = 0; i < this.playerTwo.size(); i++){
+                    if(e.getSource() == this.playerTwo.get(i)){
+                        this.game.getAttacker().selectCard(this.playerTwo.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+                for(int i = 0; i < this.twoTable.size(); i++){
+                     if(e.getSource() == this.twoTable.get(i)){
+                        this.game.getAttacker().selectCard(this.twoTable.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+                System.out.println(this.playerTwo.size()+" "+this.twoTable.size());
             }
-            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
-                 if(e.getSource() == this.game.getAttacker().getTable().get(i)){
-                    this.game.getAttacker().selectCard(this.game.getAttacker().getTable().get(i));    
+        } else {
+            if(this.game.getAttacker() != this.game.getPlayerOne()){
+                for(int i = 0; i < this.playerOne.size(); i++){
+                    if(e.getSource() == this.playerOne.get(i)){
+                        this.game.getDefender().selectCard(this.playerOne.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+                for(int i = 0; i < this.oneTable.size(); i++){
+                     if(e.getSource() == this.oneTable.get(i)){
+                        this.game.getDefender().selectCard(this.oneTable.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+            } else {
+                for(int i = 0; i < this.playerTwo.size(); i++){
+                    if(e.getSource() == this.playerTwo.get(i)){
+                        this.game.getDefender().selectCard(this.playerTwo.get(i).getCard());    
+                        this.updateUI();
+                    }
+                }
+                for(int i = 0; i < this.twoTable.size(); i++){
+                     if(e.getSource() == this.twoTable.get(i)){
+                        this.game.getDefender().selectCard(this.twoTable.get(i).getCard());    
+                        this.updateUI();
+                    }
                 }
             }
         }
