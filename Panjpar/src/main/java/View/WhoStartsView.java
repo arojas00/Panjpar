@@ -124,7 +124,7 @@ public class WhoStartsView extends javax.swing.JFrame {
         game.getViewM().enable(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
-\
+
     /**
      * Metodo para que el jugador 2 empiece atacando
      * @param evt evento que activa la accion
