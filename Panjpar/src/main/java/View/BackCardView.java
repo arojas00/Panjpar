@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class BackCardView extends javax.swing.JPanel {
 

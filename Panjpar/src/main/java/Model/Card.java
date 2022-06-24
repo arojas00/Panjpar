@@ -6,7 +6,7 @@ package Model;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Card {
     private int id;
@@ -18,27 +18,51 @@ public class Card {
         this.type = type;
         this.value = value;
     }
-
+    
+    /**
+     * Metodo devuelve el id
+     * @return id
+     */
     public int getId() {
         return id;
     }
-
+    
+    /**
+     * Metodo establece el id
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
-
+    
+    /**
+     * Metodo devuelve el tipo
+     * @return type
+     */
     public int getType() {
         return type;
     }
-
+    
+    /**
+     * Metodo establece el tipo
+     * @param type
+     */
     public void setType(int type) {
         this.type = type;
     }
-
+    
+    /**
+     * Metodo devuelve el valor
+     * @return value
+     */
     public int getValue() {
         return value;
     }
-
+    
+    /**
+     * Metodo establece el valor
+     * @param value
+     */
     public void setValue(int value) {
         this.value = value;
     }

@@ -8,43 +8,74 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Player {
     private String id;
     private ArrayList<Card> hand;
     private ArrayList<Card> table;
 
+    /**
+     * Metodo constructor de player
+     * @param id
+     */
     public Player(String id) {
         this.id = id;
         hand = new ArrayList<>();
         table = new ArrayList<>();
     }
-
+    
+    /**
+     * Metodo devuelve el id
+     * @return id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Metodo establece el id
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Metodo devuelve la mano
+     * @return hand
+     */
     public ArrayList<Card> getHand() {
         return hand;
     }
 
+    /**
+     * Metodo establece la mano
+     * @param hand
+     */
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
     }
 
+    /**
+     * Metodo devuelve la cartas de la mesa
+     * @return table
+     */
     public ArrayList<Card> getTable() {
         return table;
     }
 
+    /**
+     * Metodo establece la cartas de la mesa
+     * @param table
+     */
     public void setTable(ArrayList<Card> table) {
         this.table = table;
     }
-    
+
+    /**
+     * Metodo para pasar cartas de la mano a la mesa y viceversa
+     */
     public void selectCard(Card card){
         int position = -1;
         for (int i = 0; i < hand.size(); i++) {
@@ -113,6 +144,9 @@ public class Player {
         
     }*/
     
+    /**
+     * Metodo completar numero minimo de cartas
+     */
     public void fillHand(Deck deck){
         while(!deck.isEmpty() && hand.size() < 5){
             hand.add(deck.getNextCard());

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jafet
+ * @author Javier Donato, Jafet Picado, Adrian Rojas
  */
 public final class MainView extends javax.swing.JFrame implements MouseListener{
 
@@ -47,7 +47,10 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     private MainView() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    /**
+     * Creates actualiza el estado de la interfaz grafica
+     */
     public void updateUI(){
        jPanel1.removeAll();
        jPanel2.removeAll();
@@ -358,6 +361,10 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Accion que muestar las reglas del juego al presionar el boton
+     * @param evt evento que activa la accion
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JOptionPane.showMessageDialog(null, "Attackers: \n“Throw” or play 1, 3, "
                 + "or 5 cards in their hand. This is done by placing the cards "
@@ -409,7 +416,11 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
-
+    
+     /**
+     * Accion que pasa de ronda y llama a updateUI al tocar el boton
+     * @param evt evento que activa la accion
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         round = !round;
         updateUI();
@@ -464,6 +475,10 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
+     /**
+     * Accion que permite seleccionar las cartas a jugar
+     * @param e evento que activa la accion
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if(this.round == true){

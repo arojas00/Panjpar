@@ -9,7 +9,7 @@ import java.io.File;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public final class CardView extends javax.swing.JPanel {
     

@@ -7,7 +7,7 @@ import Controller.Panjpar;
 
 /**
  *
- * @author Javier
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class WhoStartsView extends javax.swing.JFrame {
     private final Panjpar game;
@@ -114,13 +114,21 @@ public class WhoStartsView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     /**
+     * Metodo para que el jugador 1 empiece atacando
+     * @param evt evento que activa la accion
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         game.setWhoStarts(1);
         game.getViewM().updateUI();
         game.getViewM().enable(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+\
+    /**
+     * Metodo para que el jugador 2 empiece atacando
+     * @param evt evento que activa la accion
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         game.setWhoStarts(2);
         game.getViewM().updateUI();

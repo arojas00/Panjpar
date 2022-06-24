@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Deck {
     private ArrayList<Card> deck;
@@ -21,15 +21,26 @@ public class Deck {
         trumpCard = 0;
         counter = 1;
     }
-
+    
+    /**
+     * Metodo devuelve el deck
+     * @return deck
+     */
     public ArrayList<Card> getDeck() {
         return deck;
     }
-
+    
+    /**
+     * Metodo establece el deck
+     * @param deck
+     */
     public void setDeck(ArrayList<Card> deck) {
         this.deck = deck;
     }
     
+    /**
+     * Metodo crea el deck
+     */
     public void createDeck(){
         int idCounter = 0;
         for(int i = 1; i < 5; i++){
@@ -40,6 +51,9 @@ public class Deck {
         
     }
     
+    /**
+     * Metodo mezcla el deck
+     */
     public void shuffle(){
         Card aux = null;
         for(int i = 0; i < deck.size(); i++){
@@ -51,6 +65,10 @@ public class Deck {
         trumpType = deck.get(0).getType();
     }
     
+    /**
+     * Metodo devuelve la carta siguiente del deck
+     * @return aux
+     */
     public Card getNextCard(){
         Card aux = null;
         if(!isEmpty()){
@@ -64,6 +82,10 @@ public class Deck {
         return aux;
     }
     
+    /**
+     * Metodo devuelve si el deck esta vacio
+     * @return bool
+     */
     public boolean isEmpty() {
         Boolean aux = false;
         if(counter == deck.size() && trumpCard == -1){
@@ -72,6 +94,10 @@ public class Deck {
         return aux;
     }
     
+    /**
+     * Metodo devuelve la carta "trampa"
+     * @return card
+     */
     public Card getTrumpCard(){
         return deck.get(0);
     }

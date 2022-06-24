@@ -11,7 +11,7 @@ import View.WhoStartsView;
 
 /**
  *
- * @author adrian
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public final class Panjpar {
     private Player playerOne;
@@ -32,39 +32,76 @@ public final class Panjpar {
         viewP = new WhoStartsView(this);
         viewP.setVisible(false);
     }
+    
+    /**
+     * Metodo devuelve el jugador uno
+     * @return playerOne
+     */
 
     public Player getPlayerOne() {
         return playerOne;
     }
-
+    
+    /**
+     * Metodo selecciona el jugador uno
+     * @param playerOne
+     */
     public void setPlayerOne(Player playerOne) {
         this.playerOne = playerOne;
     }
-
+    
+    /**
+     * Metodo devuelve el jugador dos
+     * @return playerTwo
+     */
     public Player getPlayerTwo() {
         return playerTwo;
     }
-
+    
+    /**
+     * Metodo selecciona el jugador dos
+     * @return playerTwo
+     */
     public void setPlayerTwo(Player playerTwo) {
         this.playerTwo = playerTwo;
     }
-
+    
+    /**
+     * Metodo devuelve el deck
+     * @return deck
+     */
     public Deck getDeck() {
         return deck;
     }
-
+    
+    /**
+     * Metodo selecciona el jugador uno
+     * @param deck
+     */
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
 
+    /**
+     * Metodo devuelve la interfaz utilizada
+     * @return viewM
+     */
     public MainView getViewM() {
         return viewM;
     }
 
+    /**
+     * Metodo establece la interfaz
+     * @param viewM
+     */
     public void setViewM(MainView viewM) {
         this.viewM = viewM;
     }
     
+    /**
+     * Metodo establece que jugador comienza atacando
+     * @param init
+     */
     public void setWhoStarts(int init){
         if(init == 1){
             attacker = playerOne;
@@ -74,41 +111,68 @@ public final class Panjpar {
             defender = playerOne;
         }
     }
-
+    
+    /**
+     * Metodo devuelve el atacante
+     * @return attacker
+     */
     public Player getAttacker() {
         return attacker;
     }
-
+    
+/**
+     * Metodo selecciona al atacante
+     * @param attacker
+     */
     public void setAttacker(Player attacker) {
         this.attacker = attacker;
     }
-
+    
+    /**
+     * Metodo devuelve el defensor
+     * @return defender
+     */
     public Player getDefender() {
         return defender;
     }
-
+    
+    /**
+     * Metodo selecciona al defensor
+     * @param defender
+     */
     public void setDefender(Player defender) {
         this.defender = defender;
     }
     
+    /**
+     * Metodo ejecuta el juego
+     */
     public void run() {
         viewM.setVisible(true);
         viewM.enable(false);
         viewP.setVisible(true);
         startGame();
     }
-    
+    /**
+     * Inicializa el juego
+     */
     public void startGame(){
         prepareDeck();
         playerOne.fillHand(deck);
         playerTwo.fillHand(deck);
     }
     
+    /**
+     * Metodo prepara el deck
+     */
     public void prepareDeck(){
         deck.createDeck();
         deck.shuffle();
     }
     
+    /**
+     * Metodo que alterna los rles de los jugadores
+     */
     public void changeRol(){
         if(attacker == playerOne){
             attacker = playerTwo;
@@ -118,6 +182,9 @@ public final class Panjpar {
             defender = playerTwo;
         }
     }
+    /**
+     * Metodo main
+     */
     
     public static void main(String[] args){
         Panjpar game = new Panjpar();
