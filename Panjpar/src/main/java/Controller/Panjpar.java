@@ -184,6 +184,7 @@ public final class Panjpar {
     }
     /**
      * Metodo main
+     * @param args
      */
     
     public static void main(String[] args){
