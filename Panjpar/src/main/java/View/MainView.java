@@ -381,14 +381,17 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(int i = 0; i < playerOne.size(); i++){
-            if(e.getSource() == playerOne.get(i)){
-                System.out.println("Carta Player 1: "+playerOne.get(i).getCard().toString());
+        if(this.round == true){
+            for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
+                if(e.getSource() == this.game.getAttacker().getHand().get(i)){
+                    this.game.getAttacker().selectCard(this.game.getAttacker().getHand().get(i));    
+                    return;
+                }
             }
-        }
-        for(int i = 0; i < playerTwo.size(); i++){
-            if(e.getSource() == playerTwo.get(i)){
-                System.out.println("Carta Player 2: "+playerTwo.get(i).getCard().toString());
+            for(int i = 0; i < this.game.getAttacker().getTable().size(); i++){
+                 if(e.getSource() == this.game.getAttacker().getTable().get(i)){
+                    this.game.getAttacker().selectCard(this.game.getAttacker().getTable().get(i));    
+                }
             }
         }
     }
