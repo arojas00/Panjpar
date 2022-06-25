@@ -5,6 +5,7 @@
 package View;
 
 import java.io.File;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -12,13 +13,13 @@ import java.io.File;
  */
 public class BackCardView extends javax.swing.JPanel {
 
-    private final String iconPath;
     /**
      * Creates new form BackCardView
      */
     public BackCardView() {
-        this.iconPath = new File("src/main/img/backView.png").getAbsolutePath();
+        ImageIcon icon = new ImageIcon("./src/main/img/backView.png");
         initComponents();
+        jLabel2.setIcon(icon);
     }
 
     /**
@@ -38,7 +39,6 @@ public class BackCardView extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(100, 150));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(iconPath));
         jLabel2.setMaximumSize(new java.awt.Dimension(100, 150));
         jLabel2.setMinimumSize(new java.awt.Dimension(100, 150));
         jLabel2.setPreferredSize(new java.awt.Dimension(100, 150));

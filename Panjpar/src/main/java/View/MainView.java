@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,6 @@ import javax.swing.JOptionPane;
  */
 public final class MainView extends javax.swing.JFrame implements MouseListener{
 
-    private final String helpPath;
     private final Panjpar game;
     private ArrayList<CardView> playerOne;
     private ArrayList<CardView> playerTwo;
@@ -33,7 +33,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     public MainView(Panjpar game) {
         this.round = true;
         this.game = game;
-        this.helpPath = new File("src/main/img/help.png").getAbsolutePath();
+        ImageIcon icon = new ImageIcon("./src/main/img/help.png");
         playerOne = new ArrayList<>();
         playerTwo = new ArrayList<>();
         oneTable = new ArrayList<>();
@@ -42,6 +42,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         initComponents();
         this.setLocationRelativeTo(null);
         jPanel5.add(new CardView(this.game.getDeck().getTrumpCard()));
+        jButton1.setIcon(icon);
     }
 
     private MainView() {
@@ -274,7 +275,6 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         jPanel4.setLayout(new java.awt.GridLayout(1, 15, 2, 2));
         jScrollPane2.setViewportView(jPanel4);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(this.helpPath));
         jButton1.setBorder(null);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
