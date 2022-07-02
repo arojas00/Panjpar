@@ -24,14 +24,12 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     private ArrayList<CardView> oneTable;
     private ArrayList<CardView> twoTable;
     private ArrayList<BackCardView> back;
-    private Boolean round;
     
     /**
      * Creates new form MainView
      * @param game Copia del controlador
      */
     public MainView(Panjpar game) {
-        this.round = true;
         this.game = game;
         ImageIcon icon = new ImageIcon("./src/main/img/help.png");
         playerOne = new ArrayList<>();
@@ -62,7 +60,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
        oneTable.removeAll(oneTable);
        twoTable.removeAll(twoTable);
        back.removeAll(back);
-       if(round){
+       if(game.getRound()){
         if(this.game.getAttacker() == this.game.getPlayerOne()){
             if(!this.game.getAttacker().getHand().isEmpty()){
                 for(int i = 0; i < this.game.getAttacker().getHand().size(); i++){
@@ -220,6 +218,11 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         }
        }
        this.validate();
+    }
+    
+    public void showError(){
+         JOptionPane.showMessageDialog(null, "Oh no, you made an invalid move,"
+                 + "check the rules to find out why ","Invalid Play", 1);
     }
     
     /**
@@ -422,7 +425,9 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
      * @param evt evento que activa la accion
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        round = !round;
+        if(!this.game.checkPlay()){
+            showError();
+        }
         updateUI();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -481,7 +486,7 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(this.round == true){
+        if(this.game.getRound() == true){
             if(this.game.getAttacker() == this.game.getPlayerOne()){
                 for(int i = 0; i < this.playerOne.size(); i++){
                     if(e.getSource() == this.playerOne.get(i)){
