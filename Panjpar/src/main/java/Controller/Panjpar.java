@@ -21,8 +21,10 @@ public final class Panjpar {
     private Deck deck;
     private MainView viewM;
     private final WhoStartsView viewP;
+    private Boolean round;
     
     public Panjpar(){
+        round = true;
         playerOne = new Player("playerOne");
         playerTwo = new Player("playerTwo");
         deck = new Deck();
@@ -181,6 +183,43 @@ public final class Panjpar {
             attacker = playerOne;
             defender = playerTwo;
         }
+    }
+
+    public Boolean getRound() {
+        return round;
+    }
+
+    public void setRound(Boolean round) {
+        this.round = round;
+    }
+    
+    public void changeRound(){
+        this.round = !this.round;
+    }
+    
+    public Boolean checkPlay(){
+        Boolean result = false;
+        if(getRound()){
+            if(getAttacker().checkTable(getDefender(), getRound())){
+                changeRound();
+                result = true;
+            }
+        } else {
+            if(getDefender().checkTable(getAttacker(), getRound())){
+                result = true;
+                if(getDefender().checkPlay(getAttacker())){
+                    getAttacker().fillHand(deck);
+                    getDefender().fillHand(deck);
+                    changeRol();
+                    changeRound();
+                } else {
+                    getAttacker().fillHand(deck);
+                    getDefender().fillHand(deck);
+                    changeRound();
+                }
+            }
+        }
+        return result;
     }
     
     /**
