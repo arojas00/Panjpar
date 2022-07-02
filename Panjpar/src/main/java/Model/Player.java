@@ -5,6 +5,10 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -103,47 +107,74 @@ public class Player {
             }
         }
     }
-    /*
-    public Boolean checkTable(){
+    
+    public Boolean checkTable(Player otherPlayer, Boolean round){
+        ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
-        switch (table.size()) {
-            case 1: valid = true;
-                valid = true;
-                break;
-            case 3: if(table.get(0).getValue() == table.get(1).getValue() 
-                    || table.get(0).getValue() == table.get(2).getValue()){
-                        valid = true;
-                    } else if(table.get(1).getValue() == 
-                            table.get(2).getValue()){
-                        valid = true;
-                    }
-                break;
-            case 5: 
-                    ArrayList<Integer> cardsPosition = new ArrayList<>();
-                    for(int i = 0; i < table.size(); i++){
-                        for(int j = 0; i < table.size(); j++){
-                            if(i != j && !cardsPosition.contains(i) &&
-                                    !cardsPosition.contains(j) && 
-                                    table.get(i).getValue() == 
-                                    table.get(j).getValue()){
-                                cardsPosition.add(i);
-                                cardsPosition.add(j);
+        if(round){
+            valid = table.size()<=otherPlayer.getHand().size();
+            switch (table.size()) {
+                case 1: valid = true;
+                    break;
+                case 3: 
+                        for (Card aux : table) {
+                            values.add(aux.getValue());
+                        }
+                        Collections.sort(values);
+                        if(Objects.equals(values.get(0), values.get(1)) || 
+                                Objects.equals(values.get(1), values.get(2))){
+                            valid = true;
+                        }
+                    break;
+
+                case 5: 
+                        for (Card aux : table) {
+                            values.add(aux.getValue());
+                        }
+                        Collections.sort(values);
+                        Map<Integer, Integer> countMap = new HashMap<>();
+                        for (Integer item : values) {
+                            if (countMap.containsKey(item)){
+                                countMap.put(item, countMap.get(item) + 1);
+                            }else{
+                                countMap.put(item, 1);
                             }
                         }
-                    }
-                    if(cardsPosition.size() >= 4){
-                        valid = true;
-                    }
-                break;
-            default: valid = false;
-                break;
+                        int pairs = 0;
+                        int trio = 0;
+                        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+                            if (null != entry.getValue()) {
+                                switch (entry.getValue()) {
+                                    case 4:
+                                        pairs += 2;
+                                    case 2:
+                                        pairs++;
+                                        break;
+                                    case 3:
+                                        trio++;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                        if(pairs == 2 || (pairs == 1 && trio == 1)){
+                            valid = true;
+                        }
+                    break;
+
+                default: valid = false;
+                    break;
+            }
+        } else {
+            valid = table.size()<=otherPlayer.getTable().size();
         }
         return valid;
-    }*/
-    /*
-    public void checkPlay(Player otherPlayer){
-        
-    }*/
+    }
+    
+    public Boolean checkPlay(Player otherPlayer){
+        return true;
+    }
     
     /**
      * Metodo completar numero minimo de cartas
