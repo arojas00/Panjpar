@@ -176,13 +176,9 @@ public final class Panjpar {
      * Metodo que alterna los rles de los jugadores
      */
     public void changeRol(){
-        if(attacker == playerOne){
-            attacker = playerTwo;
-            defender = playerOne;
-        } else {
-            attacker = playerOne;
-            defender = playerTwo;
-        }
+        Player aux = defender;
+        defender = attacker;
+        attacker = aux;
     }
 
     public Boolean getRound() {
@@ -200,23 +196,35 @@ public final class Panjpar {
     public Boolean checkPlay(){
         Boolean result = false;
         if(getRound()){
-            if(getAttacker().checkTable(getDefender(), getRound())){
+            if(getAttacker().checkTable(getDefender(), getRound(), 
+                    deck.getTrumpType())){
                 changeRound();
                 result = true;
+                this.viewM.updateUI();
             }
         } else {
-            if(getDefender().checkTable(getAttacker(), getRound())){
+            if(getDefender().checkTable(getAttacker(), getRound(), 
+                    deck.getTrumpType())){
                 result = true;
-                if(getDefender().checkPlay(getAttacker())){
+                if(getDefender().checkPlay(getAttacker(), deck.getTrumpType())){
                     getAttacker().fillHand(deck);
                     getDefender().fillHand(deck);
+                    getAttacker().clearTable();
+                    getDefender().clearTable();
+                    System.out.println(getAttacker().getTable().size()+" : "+getDefender().getTable().size());
                     changeRol();
                     changeRound();
+                    this.viewM.defenderVictory();
                 } else {
                     getAttacker().fillHand(deck);
                     getDefender().fillHand(deck);
+                    getAttacker().clearTable();
+                    getDefender().clearTable();
+                    System.out.println(getAttacker().getTable().size()+" : "+getDefender().getTable().size());
                     changeRound();
+                    this.viewM.attackerVictory();
                 }
+                this.viewM.updateUI();
             }
         }
         return result;
