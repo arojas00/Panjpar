@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Deck {
     private ArrayList<Card> deck;
     private int trumpCard;
-    private int counter;
     private int trumpType;
+    private int counter;
     
     public Deck(){
         deck = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Deck {
     public void createDeck(){
         int idCounter = 0;
         for(int i = 1; i < 5; i++){
-            for(int j = 1; j < 14; j++){
+            for(int j = 2; j < 15; j++){
                 deck.add(new Card(idCounter++, i, j));
             }
         }
@@ -100,6 +100,10 @@ public class Deck {
      */
     public Card getTrumpCard(){
         return deck.get(0);
+    }
+    
+    public int getTrumpType(){
+        return trumpType;
     }
     
 }
