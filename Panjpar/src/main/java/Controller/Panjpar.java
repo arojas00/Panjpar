@@ -28,7 +28,7 @@ public final class Panjpar {
         playerOne = new Player("playerOne");
         playerTwo = new Player("playerTwo");
         deck = new Deck();
-        this.prepareDeck();
+        prepareDeck();
         viewM = new MainView(this);
         viewM.setVisible(false);
         viewP = new WhoStartsView(this);
@@ -159,7 +159,6 @@ public final class Panjpar {
      * Inicializa el juego
      */
     public void startGame(){
-        prepareDeck();
         playerOne.fillHand(deck);
         playerTwo.fillHand(deck);
     }
@@ -207,26 +206,19 @@ public final class Panjpar {
                     deck.getTrumpType())){
                 result = true;
                 if(getDefender().checkPlay(getAttacker(), deck.getTrumpType())){
-                    getAttacker().fillHand(deck);
-                    getDefender().fillHand(deck);
-                    getAttacker().clearTable();
-                    getDefender().clearTable();
-                    System.out.println(getAttacker().getTable().size()+" : "+getDefender().getTable().size());
                     changeRol();
-                    changeRound();
                     this.viewM.defenderVictory();
                 } else {
-                    getAttacker().fillHand(deck);
-                    getDefender().fillHand(deck);
-                    getAttacker().clearTable();
-                    getDefender().clearTable();
-                    System.out.println(getAttacker().getTable().size()+" : "+getDefender().getTable().size());
-                    changeRound();
                     this.viewM.attackerVictory();
                 }
-                this.viewM.updateUI();
+                getAttacker().fillHand(deck);
+                getDefender().fillHand(deck);
+                getAttacker().clearTable();
+                getDefender().clearTable();
+                changeRound();
             }
         }
+        this.viewM.updateUI();
         return result;
     }
     
