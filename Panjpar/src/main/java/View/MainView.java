@@ -225,6 +225,17 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
                  + "check the rules to find out why ","Invalid Play", 1);
     }
     
+    public void defenderVictory(){
+        JOptionPane.showMessageDialog(null, "The defender managed to beat all "
+                + "of the attacker's cards","Defender Victory", 1);
+    }
+    
+    public void attackerVictory(){
+        JOptionPane.showMessageDialog(null, "The defender failed to beat all "
+                + "of the attacker's cards","Attacker Victory", 1);
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -428,7 +439,6 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
         if(!this.game.checkPlay()){
             showError();
         }
-        updateUI();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
