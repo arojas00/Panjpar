@@ -108,7 +108,7 @@ public class Player {
         }
     }
     
-    public Boolean checkTable(Player otherPlayer, Boolean round){
+    public Boolean checkTable(Player otherPlayer, Boolean round, int trumpType){
         ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
         if(round){
@@ -172,8 +172,43 @@ public class Player {
         return valid;
     }
     
-    public Boolean checkPlay(Player otherPlayer){
-        return true;
+    public Boolean checkPlay(Player otherPlayer, int trumpType){
+        Boolean victory = false;
+        int victoryCount = 0;
+        int size = otherPlayer.getTable().size();
+        if(table.size() < otherPlayer.getTable().size()){
+            for(int i = table.size(); i < size; i++){
+                hand.add(otherPlayer.getTable().get(i));
+            }
+        }
+        for(int i = 0; i < table.size(); i++){
+            if(table.get(i).getType() == trumpType && 
+                    otherPlayer.getTable().get(i).getType() == trumpType){
+                if(table.get(i).getValue() > 
+                        otherPlayer.getTable().get(i).getValue()){
+                    victoryCount++;
+                } else {
+                    hand.add(table.get(i));
+                    hand.add(otherPlayer.getTable().get(i));
+                }
+            } else if(table.get(i).getType() == trumpType){
+                victoryCount++;
+            } else {
+                if(table.get(i).getType() ==
+                        otherPlayer.getTable().get(i).getType() && 
+                        table.get(i).getValue() > 
+                        otherPlayer.getTable().get(i).getValue()){
+                    victoryCount++;
+                } else {
+                    hand.add(table.get(i));
+                    hand.add(otherPlayer.getTable().get(i));
+                }
+            }
+        }
+        if(victoryCount == size){
+            victory = true;
+        }
+        return victory;
     }
     
     /**
@@ -184,5 +219,9 @@ public class Player {
         while(!deck.isEmpty() && hand.size() < 5){
             hand.add(deck.getNextCard());
         }
+    }
+    
+    public void clearTable(){
+        this.table.removeAll(table);
     }
 }
