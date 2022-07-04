@@ -247,6 +247,23 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
     
     }
     
+    public void tied(){
+        JOptionPane.showMessageDialog(null, "The game is tied! None of the "
+                + "players have cards left to play","Tied", 1);
+    }
+    
+    public void playerOneWins(){
+        JOptionPane.showMessageDialog(null, "Player one wins the game! The "
+                + "defender has no card left to play","Player one wins", 1);
+    
+    }
+    
+    public void playerTwoWins(){
+        JOptionPane.showMessageDialog(null, "Player two wins the game! The "
+                + "defender has no card left to play","Player two wins", 1);
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

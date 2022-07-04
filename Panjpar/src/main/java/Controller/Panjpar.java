@@ -172,7 +172,7 @@ public final class Panjpar {
     }
     
     /**
-     * Metodo que alterna los rles de los jugadores
+     * Metodo que alterna los roles de los jugadores
      */
     public void changeRol(){
         Player aux = defender;
@@ -219,7 +219,22 @@ public final class Panjpar {
             }
         }
         this.viewM.updateUI();
+        if(deck.isEmpty() && getAttacker().getHand().isEmpty()){
+            checkWinner();
+        }
         return result;
+    }
+    
+    public void checkWinner(){
+        if(getDefender().getHand().isEmpty()){
+            this.viewM.tied();
+        }else{
+            if("playerOne".equals(getAttacker().getId())){
+                this.viewM.playerOneWins();
+            }else if("playerTwo".equals(getAttacker().getId())){
+                this.viewM.playerTwoWins();
+            }
+        }
     }
     
     /**
