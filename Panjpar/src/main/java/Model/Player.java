@@ -112,59 +112,61 @@ public class Player {
         ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
         if(round){
-            valid = table.size()<=otherPlayer.getHand().size();
-            switch (table.size()) {
-                case 1: valid = true;
-                    break;
-                case 3: 
-                        for (Card aux : table) {
-                            values.add(aux.getValue());
-                        }
-                        Collections.sort(values);
-                        if(Objects.equals(values.get(0), values.get(1)) || 
-                                Objects.equals(values.get(1), values.get(2))){
-                            valid = true;
-                        }
-                    break;
-
-                case 5: 
-                        for (Card aux : table) {
-                            values.add(aux.getValue());
-                        }
-                        Collections.sort(values);
-                        Map<Integer, Integer> countMap = new HashMap<>();
-                        for (Integer item : values) {
-                            if (countMap.containsKey(item)){
-                                countMap.put(item, countMap.get(item) + 1);
-                            }else{
-                                countMap.put(item, 1);
+            if(table.size()<=otherPlayer.getHand().size()){
+                int size = table.size();
+                System.out.println(size+"");
+                switch (size) {
+                    case 1: valid = true;
+                        break;
+                    case 3: for (Card aux : table) {
+                                values.add(aux.getValue());
                             }
-                        }
-                        int pairs = 0;
-                        int trio = 0;
-                        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
-                            if (null != entry.getValue()) {
-                                switch (entry.getValue()) {
-                                    case 4:
-                                        pairs += 2;
-                                    case 2:
-                                        pairs++;
-                                        break;
-                                    case 3:
-                                        trio++;
-                                        break;
-                                    default:
-                                        break;
+                            Collections.sort(values);
+                            if(Objects.equals(values.get(0), values.get(1)) ||
+                                  Objects.equals(values.get(1), values.get(2))){
+                                valid = true;
+                            }
+                        break;
+
+                    case 5: 
+                            for (Card aux : table) {
+                                values.add(aux.getValue());
+                            }
+                            Collections.sort(values);
+                            Map<Integer, Integer> countMap = new HashMap<>();
+                            for (Integer item : values) {
+                                if (countMap.containsKey(item)){
+                                    countMap.put(item, countMap.get(item) + 1);
+                                }else{
+                                    countMap.put(item, 1);
                                 }
                             }
-                        }
-                        if(pairs == 2 || (pairs == 1 && trio == 1)){
-                            valid = true;
-                        }
-                    break;
+                            int pairs = 0;
+                            int trio = 0;
+                            for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+                                if (null != entry.getValue()) {
+                                    switch (entry.getValue()) {
+                                        case 4:
+                                            pairs += 2;
+                                        case 2:
+                                            pairs++;
+                                            break;
+                                        case 3:
+                                            trio++;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            }
+                            if(pairs == 2 || (pairs == 1 && trio == 1)){
+                                valid = true;
+                            }
+                        break;
 
-                default: valid = false;
-                    break;
+                    default: valid = false;
+                        break;
+                }
             }
         } else {
             valid = table.size()<=otherPlayer.getTable().size();
