@@ -102,8 +102,23 @@ public class Deck {
         return deck.get(0);
     }
     
+    public int getTrumpCardNumber(){
+        return trumpCard;
+    }
+    
+    public void setTrumpCard(int trumpCard){
+        this.trumpCard = trumpCard;
+    }
+    
     public int getTrumpType(){
         return trumpType;
     }
-    
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
 }
