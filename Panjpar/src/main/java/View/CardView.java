@@ -21,7 +21,7 @@ public final class CardView extends javax.swing.JPanel {
      */
     public CardView(Card card) {
         this.card = card;
-        ImageIcon icon = new ImageIcon("./src/main/img/"+getCard().getType()+"-"+
+        ImageIcon icon = new ImageIcon("../Panjpar/src/main/img/"+getCard().getType()+"-"+
                 getCard().getValue()+".png");
         
         initComponents();
