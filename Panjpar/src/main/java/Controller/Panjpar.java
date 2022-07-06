@@ -6,6 +6,7 @@ package Controller;
 
 import Model.Player;
 import Model.Deck;
+import Model.Files;
 import View.MainView;
 import View.WhoStartsView;
 
@@ -20,14 +21,16 @@ public final class Panjpar {
     private Player defender;
     private Deck deck;
     private MainView viewM;
-    private final WhoStartsView viewP;
+    private WhoStartsView viewP;
     private Boolean round;
+    private Files files;
     
     public Panjpar(){
         round = true;
         playerOne = new Player("playerOne");
         playerTwo = new Player("playerTwo");
         deck = new Deck();
+        files = new Files();
         prepareDeck();
         viewM = new MainView(this);
         viewM.setVisible(false);
@@ -235,6 +238,28 @@ public final class Panjpar {
                 this.viewM.playerTwoWins();
             }
         }
+    }
+    
+    public void newGame(){
+        this.viewM.dispose();
+        this.viewP.dispose();
+        round = true;
+        playerOne = new Player("playerOne");
+        playerTwo = new Player("playerTwo");
+        deck = new Deck();
+        prepareDeck();
+        viewM = new MainView(this);
+        viewM.setVisible(false);
+        viewP = new WhoStartsView(this);
+        viewP.setVisible(false);
+        run();
+    }
+    
+    public void saveGame(){
+        Boolean att = getPlayerOne() == getAttacker();
+        files.saveGame(getPlayerOne(), getPlayerTwo(), getDeck(), getRound(),
+                att);
+        this.viewM.saved();
     }
     
     /**
