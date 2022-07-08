@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- *
+ * Clase para los jugadores
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Player {
@@ -108,6 +108,13 @@ public class Player {
         }
     }
     
+    /**
+     * Metodo que comprueba la validez de una jugada
+     * @param otherPlayer Player
+     * @param round boolean
+     * @param trumpType int
+     * @return boolean
+     */
     public Boolean checkTable(Player otherPlayer, Boolean round, int trumpType){
         ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
@@ -174,6 +181,13 @@ public class Player {
         return valid;
     }
     
+    /**
+     * Metodo que comprueba el resultado del enfrentamiento de las mesas de
+     * los dos jugadores
+     * @param otherPlayer Player atacante
+     * @param trumpType int tipo de la trump card
+     * @return boolean
+     */
     public Boolean checkPlay(Player otherPlayer, int trumpType){
         Boolean victory = false;
         int victoryCount = 0;
@@ -223,6 +237,9 @@ public class Player {
         }
     }
     
+    /**
+     * Metodo que limpia la tabla del jugador
+     */
     public void clearTable(){
         this.table.removeAll(table);
     }

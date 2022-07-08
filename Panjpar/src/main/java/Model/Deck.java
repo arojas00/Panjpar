@@ -7,7 +7,7 @@ package Model;
 import java.util.ArrayList;
 
 /**
- *
+ * Clase para la colección de cartas
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Deck {
@@ -102,22 +102,42 @@ public class Deck {
         return deck.get(0);
     }
     
+    /**
+     * Metodo devuelve el valor de trumpCard para definir si es 0 o 1
+     * @return trumpCard
+     */
     public int getTrumpCardNumber(){
         return trumpCard;
     }
     
+    /**
+     * Metodo que asigna el valor numerico a trumpCard
+     * @param trumpCard int
+     */
     public void setTrumpCard(int trumpCard){
         this.trumpCard = trumpCard;
     }
     
+    /**
+     * Retorna el tipo de la trump card
+     * @return trumpType
+     */
     public int getTrumpType(){
         return trumpType;
     }
 
+    /**
+     * Retorna el valor del contador de cartas
+     * @return counter
+     */
     public int getCounter() {
         return counter;
     }
 
+    /**
+     * Asigna el valor al contador de cartas
+     * @param counter int
+     */
     public void setCounter(int counter) {
         this.counter = counter;
     }

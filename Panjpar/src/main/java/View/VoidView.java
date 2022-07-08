@@ -5,7 +5,7 @@
 package View;
 
 /**
- *
+ * Vista Vacia
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class VoidView extends javax.swing.JPanel {

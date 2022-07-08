@@ -11,7 +11,7 @@ import View.MainView;
 import View.WhoStartsView;
 
 /**
- *
+ * Controlador del juego
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public final class Panjpar {
@@ -183,18 +183,33 @@ public final class Panjpar {
         attacker = aux;
     }
 
+        /**
+         * Metodo que regresa la variable round
+         * @return round
+         */
     public Boolean getRound() {
         return round;
     }
 
+    /**
+     * Metodo que asigna un valor a la variable round
+     * @param round Boolean
+     */
     public void setRound(Boolean round) {
         this.round = round;
     }
     
+    /**
+     * Metodo que invierte el valor de round
+     */
     public void changeRound(){
         this.round = !this.round;
     }
     
+    /**
+     * Metodo que revisa las mesas y las jugadas de los jugadores
+     * @return result Variable que define si la jugada fue o no valida
+     */
     public Boolean checkPlay(){
         Boolean result = false;
         if(getRound()){
@@ -228,6 +243,9 @@ public final class Panjpar {
         return result;
     }
     
+    /**
+     * Metodo que verifica si hay ganador
+     */
     public void checkWinner(){
         if(getDefender().getHand().isEmpty()){
             this.viewM.tied();
@@ -240,6 +258,9 @@ public final class Panjpar {
         }
     }
     
+    /**
+     * Metodo que genera un nuevo juego
+     */
     public void newGame(){
         this.viewM.dispose();
         this.viewP.dispose();
@@ -255,6 +276,9 @@ public final class Panjpar {
         run();
     }
     
+    /**
+     * Metodo para guardar el estado de un juego
+     */
     public void saveGame(){
         Boolean att = getPlayerOne() == getAttacker();
         if(files.saveGame(getPlayerOne(), getPlayerTwo(), getDeck(), getRound(),
@@ -265,6 +289,10 @@ public final class Panjpar {
         }
     }
     
+    /**
+     * Metodo para cargar el estado de un juego
+     * @param fileName String de numero de id del archivo
+     */
     public void loadGame(String fileName){
         if(files.readFile(this, fileName)){
             this.viewM.loaded();

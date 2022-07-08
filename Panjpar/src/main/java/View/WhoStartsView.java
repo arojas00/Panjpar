@@ -6,7 +6,7 @@ package View;
 import Controller.Panjpar;
 
 /**
- *
+ * Pantalla para definir que jugador inicia
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class WhoStartsView extends javax.swing.JFrame {

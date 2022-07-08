@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Pantalla principal del juego
  * @author Javier Donato, Jafet Picado, Adrian Rojas
  */
 public final class MainView extends javax.swing.JFrame implements MouseListener{
@@ -231,52 +231,82 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
        this.jPanel4.repaint();
     }
     
+    /**
+     * Metodo para mostrar mensaje de error
+     */
     public void showError(){
          JOptionPane.showMessageDialog(null, "Oh no, you made an invalid move,"
                  + "check the rules to find out why ","Invalid Play", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de victoria de defensor
+    */
     public void defenderVictory(){
         JOptionPane.showMessageDialog(null, "The defender managed to beat all "
                 + "of the attacker's cards","Defender Victory", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de victoria de atacante
+    */ 
     public void attackerVictory(){
         JOptionPane.showMessageDialog(null, "The defender failed to beat all "
                 + "of the attacker's cards","Attacker Victory", 1);
     
     }
     
+    /**
+    * Metodo para mostrar mensaje de empate
+    */ 
     public void tied(){
         JOptionPane.showMessageDialog(null, "The game is tied! None of the "
                 + "players have cards left to play","Tied", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de victoria de jugador 1
+    */    
     public void playerOneWins(){
         JOptionPane.showMessageDialog(null, "Player one wins the game! The "
                 + "attacker has no cards left to play","Player one wins", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de victoria de jugador 2
+    */    
     public void playerTwoWins(){
         JOptionPane.showMessageDialog(null, "Player two wins the game! The "
                 + "attacker has no cards left to play","Player two wins", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de juego guardado
+    */ 
     public void saved(){
         JOptionPane.showMessageDialog(null, "The game has been saved"
                 ,"Game saved", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de juego cargado
+    */ 
     public void loaded(){
         JOptionPane.showMessageDialog(null, "The game has been loaded"
                 ,"Game loaded", 1);
     }
     
+    /**
+    * Metodo para mostrar mensaje de error al cargar o guardar el juego
+    */ 
     public void showFileError(){
         JOptionPane.showMessageDialog(null, "Oh no, it looks like an error "
                 + "occurred while saving or loading the file", "File Error", 1);
     }
     
+    /**
+    * Metodo para actualizar el panel con la trumpCard
+    */ 
     public void updateTrumpCard(){
         jPanel5.removeAll();
         jPanel5.add(new CardView(this.game.getDeck().getTrumpCard()));

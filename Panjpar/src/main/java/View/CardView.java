@@ -8,7 +8,7 @@ import Model.Card;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Vista de la carta
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public final class CardView extends javax.swing.JPanel {

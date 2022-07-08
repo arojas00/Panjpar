@@ -13,12 +13,21 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- *
- * @author jafet
+ * Clase para guardar y cargar archivos de juego
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Files {
     public Files(){}
     
+    /**
+     * Metodo que guarda el estado del juego en un archivo de texto
+     * @param one Player 
+     * @param two Player
+     * @param deck Deck
+     * @param round boolean
+     * @param attacker boolean
+     * @return boolean
+     */
     public Boolean saveGame(Player one, Player two, Deck deck, Boolean round,
         Boolean attacker){
         Boolean result = true;
@@ -63,6 +72,12 @@ public class Files {
         return result;
     }
                
+    /**
+     * Metodo que carga el estado de un juego
+     * @param game Panjpar
+     * @param fileName String
+     * @return boolean
+     */
     public Boolean readFile(Panjpar game, String fileName){
             Boolean result = true;
             Panjpar gameCopy = new Panjpar();
@@ -121,6 +136,11 @@ public class Files {
         return result;
     }
     
+    /**
+     * Metodo que lee las cartas en el formato del archivo de guardado
+     * @param myReader Scanner
+     * @return ArrayList<Card>
+     */
     private ArrayList<Card> readCards(Scanner myReader){
         ArrayList<Card> cardArray = new ArrayList<>();
         String aux = myReader.nextLine();
@@ -140,6 +160,11 @@ public class Files {
         return cardArray;
     }
         
+    /**
+     * Metodo que asigna toda la información del jugador en un String
+     * @param player Player
+     * @return String
+     */
     private String playerString(Player player){
         String aux = "";
         aux += player.getId()+"\n";
@@ -168,6 +193,12 @@ public class Files {
         return aux;
     }
     
+    /**
+     * Metodo que asigna todas las cartas del deck a un String, junto a su
+     * contador y el valor de trumpCard
+     * @param deck Deck
+     * @return String
+     */
     private String deckString(Deck deck){
         String aux = "";
         for(Card card: deck.getDeck()){

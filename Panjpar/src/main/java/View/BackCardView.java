@@ -8,7 +8,7 @@ import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Vista trasera de la carta
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class BackCardView extends javax.swing.JPanel {

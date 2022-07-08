@@ -5,7 +5,7 @@
 package Model;
 
 /**
- *
+ * Clase para las Cartas
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Card {
