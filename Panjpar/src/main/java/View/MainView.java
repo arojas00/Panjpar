@@ -381,6 +381,11 @@ public final class MainView extends javax.swing.JFrame implements MouseListener{
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jButton5.setText("Load Game");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel4.setText("Player One");
