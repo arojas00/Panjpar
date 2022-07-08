@@ -265,8 +265,6 @@ public final class Panjpar {
         }
     }
     
-<<<<<<< Updated upstream
-=======
     public void loadGame(String fileName){
         if(files.readFile(this, fileName)){
             this.viewM.loaded();
@@ -277,7 +275,6 @@ public final class Panjpar {
         }
     }
     
->>>>>>> Stashed changes
     /**
      * Metodo main
      * @param args String[]
