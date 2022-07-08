@@ -220,11 +220,11 @@ public final class Panjpar {
                 getDefender().clearTable();
                 changeRound();
             }
+            if(deck.isEmpty() && getAttacker().getHand().isEmpty()){
+                checkWinner();
+            }
         }
         this.viewM.updateUI();
-        if(deck.isEmpty() && getAttacker().getHand().isEmpty()){
-            checkWinner();
-        }
         return result;
     }
     
@@ -232,9 +232,9 @@ public final class Panjpar {
         if(getDefender().getHand().isEmpty()){
             this.viewM.tied();
         }else{
-            if("playerOne".equals(getAttacker().getId())){
+            if(getPlayerOne() == getAttacker()){
                 this.viewM.playerOneWins();
-            }else if("playerTwo".equals(getAttacker().getId())){
+            } else {
                 this.viewM.playerTwoWins();
             }
         }
@@ -257,11 +257,27 @@ public final class Panjpar {
     
     public void saveGame(){
         Boolean att = getPlayerOne() == getAttacker();
-        files.saveGame(getPlayerOne(), getPlayerTwo(), getDeck(), getRound(),
-                att);
-        this.viewM.saved();
+        if(files.saveGame(getPlayerOne(), getPlayerTwo(), getDeck(), getRound(),
+                att)){
+            this.viewM.saved();
+        } else {
+            this.viewM.showFileError();
+        }
     }
     
+<<<<<<< Updated upstream
+=======
+    public void loadGame(String fileName){
+        if(files.readFile(this, fileName)){
+            this.viewM.loaded();
+            this.viewM.updateTrumpCard();
+            this.viewM.updateUI();
+        } else {
+            this.viewM.showFileError();
+        }
+    }
+    
+>>>>>>> Stashed changes
     /**
      * Metodo main
      * @param args String[]
