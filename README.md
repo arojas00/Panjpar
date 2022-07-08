@@ -1,6 +1,6 @@
 # Panjpar
 Projecto para diseño de software - juego Panjpar
-El branch actualizado con la última versión del programa es el branch main.
+\nEl branch actualizado con la última versión del programa es el branch main.
 
 ## Ejecución
 Para ejecutar el programa puede utilizarse el ejecutable que se encuentra en la carpeta raíz del proyecto. 
