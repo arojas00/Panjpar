@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Controller.Panjpar;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileNotFoundException;
@@ -17,8 +19,9 @@ import java.util.Scanner;
 public class Files {
     public Files(){}
     
-    public void saveGame(Player one, Player two, Deck deck, Boolean round,
+    public Boolean saveGame(Player one, Player two, Deck deck, Boolean round,
         Boolean attacker){
+        Boolean result = true;
         try {
             Boolean foundName = false;
             File myObj;
@@ -54,36 +57,83 @@ public class Files {
             }
             myWriter.close();
         } catch (IOException e) {
+            result = false;
             System.out.println("An error occurred.");
         }
+        return result;
     }
-    
-    public void readFile(Player one, Player two, Deck deck, Boolean round, 
-            Boolean attacker){
-        try{
-            File myObj = new File("../SaveFiles/PanjparGame"+(0)+".txt");
-            Scanner myReader = new Scanner(myObj);
-            while(myReader.hasNextLine()){
-                if(myReader.nextLine().equals("PlayerOne")){
-                    one.setId(myReader.nextLine());
-         
+               
+    public Boolean readFile(Panjpar game, String fileName){
+            Boolean result = true;
+        try{  
+            File myObj = new File("../SaveFiles/PanjparGame"+fileName+".txt");
+            Scanner myReader;
+            myReader = new Scanner(myObj);
+            String aux = myReader.nextLine();
+            if(aux.equals("PlayerOne")){
+                game.getPlayerOne().setId(myReader.nextLine());
+                game.getPlayerOne().setHand(readCards(myReader));
+                game.getPlayerOne().setTable(readCards(myReader));
+            }
+            aux = myReader.nextLine();
+            if(aux.equals("PlayerTwo")){
+                game.getPlayerTwo().setId(myReader.nextLine());
+                game.getPlayerTwo().setHand(readCards(myReader));
+                game.getPlayerTwo().setTable(readCards(myReader));
+            }
+            aux = myReader.nextLine();
+            if(aux.equals("Deck")){
+                game.getDeck().setDeck(readCards(myReader));
+                game.getDeck().setCounter(Integer.parseInt(myReader.nextLine()));
+                game.getDeck().setTrumpCard(Integer.parseInt(myReader.nextLine()));
+            }
+            aux = myReader.nextLine();
+            if(aux.equals("GameState")){
+                aux = myReader.nextLine();
+                game.setRound(aux.equals("1"));
+                aux = myReader.nextLine();
+                if(aux.equals("0")){
+                    game.setAttacker(game.getPlayerTwo());
+                    game.setDefender(game.getPlayerOne());
+                } else {
+                    game.setAttacker(game.getPlayerOne());
+                    game.setDefender(game.getPlayerTwo());
                 }
-                
             }
             myReader.close();
         } catch (FileNotFoundException e){
+            result = false;
             System.out.println("An error Occurred.");
             e.printStackTrace();
         }
+        return result;
     }
-    
+    private ArrayList<Card> readCards(Scanner myReader){
+        ArrayList<Card> cardArray = new ArrayList<>();
+        String aux = myReader.nextLine();
+        if(!aux.equals("X")){
+            while(true){
+                String aux2 = aux;
+                String[] arrOfStr = aux2.split(" ", 7);
+                cardArray.add(new Card(Integer.parseInt(arrOfStr[1])
+                        , Integer.parseInt(arrOfStr[3])
+                        , Integer.parseInt(arrOfStr[5])));
+                if(aux.contains("].")){
+                    break;
+                }
+                aux = myReader.nextLine();
+            }
+        }
+        return cardArray;
+    }
+        
     private String playerString(Player player){
         String aux = "";
         aux += player.getId()+"\n";
         if(!player.getHand().isEmpty()){
             for (Card hand : player.getHand()) {
                 if(hand != player.getHand().get(player.getHand().size()-1)){
-                    aux += hand.toString()+" ";
+                    aux += hand.toString()+"\n";
                 } else {
                     aux += hand.toString()+"\n";
                 }
@@ -94,7 +144,7 @@ public class Files {
         if(!player.getTable().isEmpty()){
             for (Card table : player.getTable()) {
                 if(table != player.getTable().get(player.getTable().size()-1)){
-                    aux += table.toString()+" ";
+                    aux += table.toString()+"\n";
                 } else {
                     aux += table.toString()+"\n";
                 }
@@ -109,7 +159,7 @@ public class Files {
         String aux = "";
         for(Card card: deck.getDeck()){
             if(card != deck.getDeck().get(deck.getDeck().size()-1)){
-                aux += card.toString()+" ";
+                aux += card.toString()+"\n";
             } else {
                 aux += card.toString()+"\n";
             }
