@@ -65,49 +65,62 @@ public class Files {
                
     public Boolean readFile(Panjpar game, String fileName){
             Boolean result = true;
+            Panjpar gameCopy = new Panjpar();
+            gameCopy.setPlayerOne(game.getPlayerOne());
+            gameCopy.setPlayerTwo(game.getPlayerTwo());
+            gameCopy.setAttacker(game.getAttacker());
+            gameCopy.setDefender(game.getDefender());
+            gameCopy.setViewM(game.getViewM());
+            gameCopy.setRound(game.getRound());
         try{  
             File myObj = new File("../SaveFiles/PanjparGame"+fileName+".txt");
             Scanner myReader;
             myReader = new Scanner(myObj);
             String aux = myReader.nextLine();
-            if(aux.equals("PlayerOne")){
-                game.getPlayerOne().setId(myReader.nextLine());
-                game.getPlayerOne().setHand(readCards(myReader));
-                game.getPlayerOne().setTable(readCards(myReader));
-            }
-            aux = myReader.nextLine();
-            if(aux.equals("PlayerTwo")){
-                game.getPlayerTwo().setId(myReader.nextLine());
-                game.getPlayerTwo().setHand(readCards(myReader));
-                game.getPlayerTwo().setTable(readCards(myReader));
-            }
-            aux = myReader.nextLine();
-            if(aux.equals("Deck")){
-                game.getDeck().setDeck(readCards(myReader));
-                game.getDeck().setCounter(Integer.parseInt(myReader.nextLine()));
-                game.getDeck().setTrumpCard(Integer.parseInt(myReader.nextLine()));
-            }
-            aux = myReader.nextLine();
-            if(aux.equals("GameState")){
-                aux = myReader.nextLine();
-                game.setRound(aux.equals("1"));
-                aux = myReader.nextLine();
-                if(aux.equals("0")){
-                    game.setAttacker(game.getPlayerTwo());
-                    game.setDefender(game.getPlayerOne());
-                } else {
-                    game.setAttacker(game.getPlayerOne());
-                    game.setDefender(game.getPlayerTwo());
+            try{
+                if(aux.equals("PlayerOne")){
+                    game.getPlayerOne().setId(myReader.nextLine());
+                    game.getPlayerOne().setHand(readCards(myReader));
+                    game.getPlayerOne().setTable(readCards(myReader));
                 }
+                aux = myReader.nextLine();
+                if(aux.equals("PlayerTwo")){
+                    game.getPlayerTwo().setId(myReader.nextLine());
+                    game.getPlayerTwo().setHand(readCards(myReader));
+                    game.getPlayerTwo().setTable(readCards(myReader));
+                }
+                aux = myReader.nextLine();
+                if(aux.equals("Deck")){
+                    game.getDeck().setDeck(readCards(myReader));
+                    game.getDeck().setCounter(Integer.parseInt(myReader.nextLine()));
+                    game.getDeck().setTrumpCard(Integer.parseInt(myReader.nextLine()));
+                }
+                aux = myReader.nextLine();
+                if(aux.equals("GameState")){
+                    aux = myReader.nextLine();
+                    game.setRound(aux.equals("1"));
+                    aux = myReader.nextLine();
+                    if(aux.equals("0")){
+                        game.setAttacker(game.getPlayerTwo());
+                        game.setDefender(game.getPlayerOne());
+                    } else {
+                        game.setAttacker(game.getPlayerOne());
+                        game.setDefender(game.getPlayerTwo());
+                    }
+                }
+                myReader.close();
+            } catch(Exception e){
+                game = gameCopy;
+                System.out.println("An error occurred.");
+                return false;
             }
-            myReader.close();
         } catch (FileNotFoundException e){
             result = false;
             System.out.println("An error Occurred.");
-            e.printStackTrace();
         }
         return result;
     }
+    
     private ArrayList<Card> readCards(Scanner myReader){
         ArrayList<Card> cardArray = new ArrayList<>();
         String aux = myReader.nextLine();
