@@ -73,7 +73,7 @@ public class Card {
      */
     @Override
     public String toString(){
-        return "C["+id+"]T["+type+"]V["+value+"]";
+        return "C[ "+id+" ]T[ "+type+" ]V[ "+value+" ]";
     }
     
 }

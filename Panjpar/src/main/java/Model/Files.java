@@ -135,7 +135,7 @@ public class Files {
                 if(hand != player.getHand().get(player.getHand().size()-1)){
                     aux += hand.toString()+"\n";
                 } else {
-                    aux += hand.toString()+"\n";
+                    aux += hand.toString()+".\n";
                 }
             }
         } else {
@@ -146,7 +146,7 @@ public class Files {
                 if(table != player.getTable().get(player.getTable().size()-1)){
                     aux += table.toString()+"\n";
                 } else {
-                    aux += table.toString()+"\n";
+                    aux += table.toString()+".\n";
                 }
             }
         } else {
@@ -161,7 +161,7 @@ public class Files {
             if(card != deck.getDeck().get(deck.getDeck().size()-1)){
                 aux += card.toString()+"\n";
             } else {
-                aux += card.toString()+"\n";
+                aux += card.toString()+".\n";
             }
         }
         aux += deck.getCounter()+"\n";
