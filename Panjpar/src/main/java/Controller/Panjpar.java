@@ -23,7 +23,7 @@ public final class Panjpar {
     private MainView viewM;
     private WhoStartsView viewP;
     private Boolean round;
-    private Files files;
+    private final Files files;
     
     public Panjpar(){
         round = true;
