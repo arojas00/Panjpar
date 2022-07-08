@@ -18,7 +18,7 @@ public class Deck {
     
     public Deck(){
         deck = new ArrayList<>();
-        trumpCard = 0;
+        trumpCard = 1;
         counter = 1;
     }
     
@@ -76,7 +76,7 @@ public class Deck {
                 aux = deck.get(counter++);
             } else {
                 aux = deck.get(0);
-                trumpCard = -1;
+                trumpCard = 0;
             }
         }
         return aux;
@@ -88,7 +88,7 @@ public class Deck {
      */
     public boolean isEmpty() {
         Boolean aux = false;
-        if(counter == deck.size() && trumpCard == -1){
+        if(counter == deck.size() && trumpCard == 0){
             aux = true;
         }
         return aux;
