@@ -121,7 +121,6 @@ public class Player {
         if(round){
             if(table.size()<=otherPlayer.getHand().size()){
                 int size = table.size();
-                System.out.println(size+"");
                 switch (size) {
                     case 1: valid = true;
                         break;

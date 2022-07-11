@@ -235,7 +235,8 @@ public final class Panjpar {
                 getDefender().clearTable();
                 changeRound();
             }
-            if(deck.isEmpty() && getAttacker().getHand().isEmpty()){
+            if(deck.isEmpty() && (getAttacker().getHand().isEmpty() || 
+                    getDefender().getHand().isEmpty())){
                 checkWinner();
             }
         }
@@ -247,10 +248,11 @@ public final class Panjpar {
      * Metodo que verifica si hay ganador
      */
     public void checkWinner(){
-        if(getDefender().getHand().isEmpty()){
+        if(getDefender().getHand().isEmpty() && 
+                getAttacker().getHand().isEmpty()){
             this.viewM.tied();
         }else{
-            if(getPlayerOne() == getAttacker()){
+            if(getPlayerOne().getHand().isEmpty()){
                 this.viewM.playerOneWins();
             } else {
                 this.viewM.playerTwoWins();
