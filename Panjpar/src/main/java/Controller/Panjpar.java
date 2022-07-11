@@ -295,6 +295,7 @@ public final class Panjpar {
      */
     public void loadGame(String fileName){
         if(files.readFile(this, fileName)){
+            deck.setTrumpType(deck.getTrumpCard().getType());
             this.viewM.loaded();
             this.viewM.updateTrumpCard();
             this.viewM.updateUI();

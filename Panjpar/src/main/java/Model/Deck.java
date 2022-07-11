@@ -141,4 +141,8 @@ public class Deck {
     public void setCounter(int counter) {
         this.counter = counter;
     }
+    
+    public void setTrumpType(int trumpType){
+        this.trumpType = trumpType;
+    }
 }
