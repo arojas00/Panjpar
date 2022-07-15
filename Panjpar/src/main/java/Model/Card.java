@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 /**
@@ -10,10 +6,10 @@ package Model;
  */
 public class Card {
     private int id;
-    private int type;
+    private String type;
     private int value;
 
-    public Card(int id, int type, int value) {
+    public Card(int id, String type, int value) {
         this.id = id;
         this.type = type;
         this.value = value;
@@ -39,7 +35,7 @@ public class Card {
      * Metodo devuelve el tipo
      * @return type int
      */
-    public int getType() {
+    public String getType() {
         return type;
     }
     
@@ -47,7 +43,7 @@ public class Card {
      * Metodo establece el tipo
      * @param type int
      */
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
     
