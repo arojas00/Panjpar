@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -19,7 +18,7 @@ import java.util.Scanner;
 public class FilesPanjpar extends Files{
     private Panjpar game;
     
-    FilesPanjpar(Panjpar game){
+    public FilesPanjpar(Panjpar game){
         this.game = game;
     }
 
@@ -56,6 +55,8 @@ public class FilesPanjpar extends Files{
             myWriter.write(playerString(game.getPlayerTwo()));
             myWriter.write("Deck\n");
             myWriter.write(groupOfCardsString(game.getDeck()));
+            myWriter.write(game.getDeck().getCounter()+"\n");
+            myWriter.write(game.getDeck().getTrumpCardNumber()+"\n");
             myWriter.write("GameState\n");
             if(game.getRound()){
                 myWriter.write("1\n");
@@ -93,18 +94,18 @@ public class FilesPanjpar extends Files{
             try{
                 if(aux.equals("PlayerOne")){
                     game.getPlayerOne().setId(myReader.nextLine());
-                    game.getPlayerOne().setHand(readCards(myReader));
-                    game.getPlayerOne().setTable(readCards(myReader));
+                    game.getPlayerOne().setHandCards(readCards(myReader));
+                    game.getPlayerOne().setTableCards(readCards(myReader));
                 }
                 aux = myReader.nextLine();
                 if(aux.equals("PlayerTwo")){
                     game.getPlayerTwo().setId(myReader.nextLine());
-                    game.getPlayerTwo().setHand(readCards(myReader));
-                    game.getPlayerTwo().setTable(readCards(myReader));
+                    game.getPlayerTwo().setHandCards(readCards(myReader));
+                    game.getPlayerTwo().setTableCards(readCards(myReader));
                 }
                 aux = myReader.nextLine();
                 if(aux.equals("Deck")){
-                    game.getDeck().setDeck(readCards(myReader));
+                    game.getDeck().setCards(readCards(myReader));
                     game.getDeck().setCounter(Integer.parseInt(myReader.nextLine()));
                     game.getDeck().setTrumpCard(Integer.parseInt(myReader.nextLine()));
                 }
