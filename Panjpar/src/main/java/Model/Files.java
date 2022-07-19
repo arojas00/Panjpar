@@ -4,11 +4,6 @@
  */
 package Model;
 
-import Controller.Game;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,17 +20,17 @@ public abstract class Files {
                
     /**
      * Metodo que carga el estado de un juego
+     * @param fileName
      * @return boolean
      */
     public abstract Boolean readFile(String fileName);
     
     /**
      * Metodo que lee las cartas en el formato del archivo de guardado
-     * @param player
      * @param myReader Scanner
-     * @return ArrayList<Card>
-     *//*
-    private ArrayList<Card> readCards(Scanner myReader){
+     * @return ArrayList<Card> 
+     */
+    public ArrayList<Card> readCards(Scanner myReader){
         ArrayList<Card> cardArray = new ArrayList<>();
         String aux = myReader.nextLine();
         if(!aux.equals("X")){
@@ -43,7 +38,7 @@ public abstract class Files {
                 String aux2 = aux;
                 String[] arrOfStr = aux2.split(" ", 7);
                 cardArray.add(new Card(Integer.parseInt(arrOfStr[1])
-                        , Integer.parseInt(arrOfStr[3])
+                        , arrOfStr[3]
                         , Integer.parseInt(arrOfStr[5])));
                 if(aux.contains("].")){
                     break;
@@ -89,22 +84,5 @@ public abstract class Files {
         }
         return aux;
     }
-    
-    public ArrayList<Card> readCards(Scanner myReader){
-        ArrayList<Card> cardArray = new ArrayList<>();
-        String aux = myReader.nextLine();
-        if(!aux.equals("X")){
-            while(true){
-                String aux2 = aux;
-                String[] arrOfStr = aux2.split(" ", 7);
-                cardArray.add(new Card(Integer.parseInt(arrOfStr[1])
-                        , arrOfStr[3], Integer.parseInt(arrOfStr[5])));
-                if(aux.contains("].")){
-                    break;
-                }
-                aux = myReader.nextLine();
-            }
-        }
-        return cardArray;
-    }
+
 }
