@@ -14,8 +14,8 @@ public class DeckPanjpar extends GroupOfCards{
     private int trumpCard;
     private int counter;
     
-    public DeckPanjpar(ArrayList<String> types, int max, int min){
-        createCards(types, max, min);
+    public DeckPanjpar(ArrayList<String> types, int end, int start){
+        createCards(types, 14, 2);
         trumpCard = 1;
         counter = 1;
     }
@@ -28,7 +28,8 @@ public class DeckPanjpar extends GroupOfCards{
         Card aux = null;
         if(!isEmpty()){
             if(counter < getCards().size()){
-                aux = getCard(counter++);
+                aux = getCard(counter);
+                counter++;
             } else {
                 aux = getCard(0);
                 trumpCard = 0;
@@ -55,7 +56,7 @@ public class DeckPanjpar extends GroupOfCards{
      * @return card Posicion 0 del mazo
      */
     public Card getTrumpCard(){
-        return getCard(0);
+        return getCards().get(0);
     }
     
     /**
@@ -97,5 +98,6 @@ public class DeckPanjpar extends GroupOfCards{
     public void setCounter(int counter) {
         this.counter = counter;
     }
+    
 }
 

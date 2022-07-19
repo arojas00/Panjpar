@@ -24,10 +24,10 @@ public class GroupOfCards {
         this.cards = cards;
     }
     
-    public void createCards(ArrayList<String> types, int start, int end){
+    public void createCards(ArrayList<String> types, int end, int start){
         int idCounter = 0;
         for(String aux : types){
-            for(int j = start; j < end; j++){
+            for(int j = start; j <= end; j++){
                 cards.add(new Card(idCounter++, aux, j));
             }
         }
@@ -48,9 +48,6 @@ public class GroupOfCards {
     };
     
     public Card getCard(int index){
-        if(index > 0 && index < getCards().size()){
-            return getCards().get(index);
-        }
-        return null;
+        return getCards().get(index);
     }
 }
