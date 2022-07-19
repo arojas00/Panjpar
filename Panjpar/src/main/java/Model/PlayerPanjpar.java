@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jafet
@@ -14,8 +16,9 @@ public class PlayerPanjpar extends Player{
      * @param id
      */
     public PlayerPanjpar(String id){
-        getGroup().add(new GroupOfCards());
-        getGroup().add(new GroupOfCards());
+        group = new ArrayList<>();
+        group.add(new GroupOfCards());
+        group.add(new GroupOfCards());
         setId(id);
     }
     
@@ -32,7 +35,7 @@ public class PlayerPanjpar extends Player{
      * @param hand Grupo de cartas
      */
     public void setHand(GroupOfCards hand) {
-        getGroup().remove(1);
+        getGroup().remove(0);
         getGroup().add(hand);
     }
     
@@ -101,6 +104,14 @@ public class PlayerPanjpar extends Player{
      */
     public void clearTable(){
         getTable().getCards().removeAll(getTable().getCards());
+    }
+    
+    public void setHandCards(ArrayList<Card> cards){
+        group.get(0).setCards(cards);
+    }
+    
+    public void setTableCards(ArrayList<Card> cards){
+        group.get(1).setCards(cards);
     }
     
 }
