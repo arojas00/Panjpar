@@ -36,7 +36,7 @@ public class PlayerPanjpar extends Player{
      */
     public void setHand(GroupOfCards hand) {
         getGroup().remove(0);
-        getGroup().add(hand);
+        getGroup().add(0, hand);
     }
     
     /**
@@ -53,7 +53,7 @@ public class PlayerPanjpar extends Player{
      */
     public void setTable(GroupOfCards table) {
         getGroup().remove(1);
-        getGroup().add(table);
+        getGroup().add(1, table);
     }
     
     /**
