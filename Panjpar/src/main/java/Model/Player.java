@@ -10,15 +10,9 @@ import java.util.ArrayList;
  * Clase para los jugadores
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
-public class Player {
+public abstract class Player {
     private String id;
-    private ArrayList<GroupOfCards> group;
-    /**
-     * Metodo constructor de player
-     */
-    public Player() {
-        group = new ArrayList<>();
-    }
+    protected ArrayList<GroupOfCards> group;
     
     /**
      * Metodo devuelve el id
@@ -43,4 +37,5 @@ public class Player {
     public void setGroup(ArrayList<GroupOfCards> group) {
         this.group = group;
     }
+    
 }
