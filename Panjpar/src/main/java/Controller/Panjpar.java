@@ -4,109 +4,62 @@
  */
 package Controller;
 
-import Model.Player;
-import Model.Deck;
-import Model.Files;
+import Model.DeckPanjpar;
+import Model.FilesPanjpar;
+import Model.PlayerPanjpar;
+import Model.ValidatorPanjpar;
 import View.MainView;
 import View.WhoStartsView;
+import java.util.ArrayList;
 
 /**
  * Controlador del juego
  * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
-public final class Panjpar {
-    private Player playerOne;
-    private Player playerTwo;
-    private Player attacker;
-    private Player defender;
-    private Deck deck;
-    private MainView viewM;
-    private WhoStartsView viewP;
-    private Boolean round;
-    private final Files files;
+public class Panjpar extends Game<DeckPanjpar, PlayerPanjpar>{
+    private PlayerPanjpar attacker;
+    private PlayerPanjpar defender;
+    private ArrayList<String> types;
     
     public Panjpar(){
+        validator = new ValidatorPanjpar();
+        playerOne = new PlayerPanjpar("playerOne");
+        playerTwo = new PlayerPanjpar("playerTwo");
+        types = new ArrayList<>();
+        types.add("1"); types.add("2"); types.add("3"); types.add("4");
+        decks = new ArrayList<>();
+        decks.add(new DeckPanjpar(types, 14, 2));
         round = true;
-        playerOne = new Player("playerOne");
-        playerTwo = new Player("playerTwo");
-        deck = new Deck();
-        files = new Files();
-        prepareDeck();
+        files = new FilesPanjpar(this);
         viewM = new MainView(this);
         viewM.setVisible(false);
         viewP = new WhoStartsView(this);
         viewP.setVisible(false);
     }
     
-    /**
-     * Metodo devuelve el jugador uno
-     * @return playerOne Jugador uno
-     */
-
-    public Player getPlayerOne() {
-        return playerOne;
-    }
-    
-    /**
-     * Metodo selecciona el jugador uno
-     * @param playerOne Player
-     */
-    public void setPlayerOne(Player playerOne) {
-        this.playerOne = playerOne;
-    }
-    
-    /**
-     * Metodo devuelve el jugador dos
-     * @return playerTwo jugador dos
-     */
-    public Player getPlayerTwo() {
-        return playerTwo;
-    }
-    
-    /**
-     * Metodo selecciona el jugador dos
-     * @param playerTwo Player
-     */
-    public void setPlayerTwo(Player playerTwo) {
-        this.playerTwo = playerTwo;
-    }
     
     /**
      * Metodo devuelve el deck
      * @return deck mazo de cartas
      */
-    public Deck getDeck() {
-        return deck;
+    public DeckPanjpar getDeck() {
+        return decks.get(0);
     }
     
     /**
      * Metodo selecciona el jugador uno
      * @param deck Mazo de cartas
      */
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
-    /**
-     * Metodo devuelve la interfaz utilizada
-     * @return viewM MainView
-     */
-    public MainView getViewM() {
-        return viewM;
-    }
-
-    /**
-     * Metodo establece la interfaz
-     * @param viewM MainView
-     */
-    public void setViewM(MainView viewM) {
-        this.viewM = viewM;
+    public void setDeck(DeckPanjpar deck) {
+        decks.remove(0);
+        decks.add(0, deck);
     }
     
     /**
      * Metodo establece que jugador comienza atacando
      * @param init Entero
      */
+    @Override
     public void setWhoStarts(int init){
         if(init == 1){
             attacker = playerOne;
@@ -121,7 +74,7 @@ public final class Panjpar {
      * Metodo devuelve el atacante
      * @return attacker Player
      */
-    public Player getAttacker() {
+    public PlayerPanjpar getAttacker() {
         return attacker;
     }
     
@@ -129,7 +82,7 @@ public final class Panjpar {
      * Metodo selecciona al atacante
      * @param attacker Player
      */
-    public void setAttacker(Player attacker) {
+    public void setAttacker(PlayerPanjpar attacker) {
         this.attacker = attacker;
     }
     
@@ -137,7 +90,7 @@ public final class Panjpar {
      * Metodo devuelve el defensor
      * @return defender Player
      */
-    public Player getDefender() {
+    public PlayerPanjpar getDefender() {
         return defender;
     }
     
@@ -145,119 +98,84 @@ public final class Panjpar {
      * Metodo selecciona al defensor
      * @param defender Player
      */
-    public void setDefender(Player defender) {
+    public void setDefender(PlayerPanjpar defender) {
         this.defender = defender;
     }
     
-    /**
-     * Metodo ejecuta el juego
-     */
-    public void run() {
-        viewM.setVisible(true);
-        viewM.enable(false);
-        viewP.setVisible(true);
-        startGame();
-    }
-    /**
-     * Inicializa el juego
-     */
+    @Override
     public void startGame(){
-        playerOne.fillHand(deck);
-        playerTwo.fillHand(deck);
+        playerOne.fillHand(decks.get(0));
+        playerTwo.fillHand(decks.get(0));
     }
     
-    /**
-     * Metodo prepara el deck
-     */
+    @Override
     public void prepareDeck(){
-        deck.createDeck();
-        deck.shuffle();
+        decks.get(0).shuffle();
     }
-    
     /**
      * Metodo que alterna los roles de los jugadores
      */
     public void changeRol(){
-        Player aux = defender;
+        PlayerPanjpar aux = defender;
         defender = attacker;
         attacker = aux;
     }
 
-        /**
-         * Metodo que regresa la variable round
-         * @return round
-         */
-    public Boolean getRound() {
-        return round;
-    }
-
-    /**
-     * Metodo que asigna un valor a la variable round
-     * @param round Boolean
-     */
-    public void setRound(Boolean round) {
-        this.round = round;
-    }
-    
-    /**
-     * Metodo que invierte el valor de round
-     */
-    public void changeRound(){
-        this.round = !this.round;
-    }
-    
     /**
      * Metodo que revisa las mesas y las jugadas de los jugadores
      * @return result Variable que define si la jugada fue o no valida
      */
+    @Override
     public Boolean checkPlay(){
         Boolean result = false;
         if(getRound()){
-            if(getAttacker().checkTable(getDefender(), getRound(), 
-                    deck.getTrumpType())){
+            if((validator.checkTable(getAttacker(), getDefender(), getRound(),
+                    decks.get(0).getTrumpType()))){
                 changeRound();
                 result = true;
-                this.viewM.updateUI();
             }
         } else {
-            if(getDefender().checkTable(getAttacker(), getRound(), 
-                    deck.getTrumpType())){
+            if(validator.checkTable(getAttacker(), getDefender(), getRound(), 
+                decks.get(0).getTrumpType())){
                 result = true;
-                if(getDefender().checkPlay(getAttacker(), deck.getTrumpType())){
+                if(validator.checkPlay(getAttacker(), getDefender(), 
+                        decks.get(0).getTrumpType())){
                     changeRol();
                     this.viewM.defenderVictory();
                 } else {
                     this.viewM.attackerVictory();
                 }
-                getAttacker().fillHand(deck);
-                getDefender().fillHand(deck);
+                getAttacker().fillHand(decks.get(0));
+                getDefender().fillHand(decks.get(0));
                 getAttacker().clearTable();
                 getDefender().clearTable();
                 changeRound();
             }
-            if(deck.isEmpty() && (getAttacker().getHand().isEmpty() || 
+            if(decks.get(0).isEmpty() && (getAttacker().getHand().isEmpty() || 
                     getDefender().getHand().isEmpty())){
-                checkWinner();
+                int winner = validator.checkWinner(getAttacker(), getDefender());
+                switch(winner){
+                    case 1: viewM.tied();
+                        break;
+                    case 2: if(getAttacker() == getPlayerOne()){
+                                viewM.playerOneWins();
+                            } else {
+                                viewM.playerTwoWins();
+                            }
+                        break;
+                    case 3: if(getDefender() == getPlayerOne()){
+                                viewM.playerOneWins();
+                            } else {
+                                viewM.playerTwoWins();
+                            }
+                        break;
+                    default: 
+                        break;
+                }
             }
         }
         this.viewM.updateUI();
         return result;
-    }
-    
-    /**
-     * Metodo que verifica si hay ganador
-     */
-    public void checkWinner(){
-        if(getDefender().getHand().isEmpty() && 
-                getAttacker().getHand().isEmpty()){
-            this.viewM.tied();
-        }else{
-            if(getPlayerOne().getHand().isEmpty()){
-                this.viewM.playerOneWins();
-            } else {
-                this.viewM.playerTwoWins();
-            }
-        }
     }
     
     /**
@@ -267,9 +185,11 @@ public final class Panjpar {
         this.viewM.dispose();
         this.viewP.dispose();
         round = true;
-        playerOne = new Player("playerOne");
-        playerTwo = new Player("playerTwo");
-        deck = new Deck();
+        playerOne = new PlayerPanjpar("playerOne");
+        playerTwo = new PlayerPanjpar("playerTwo");
+        decks.remove(0);
+        decks.add(0, new DeckPanjpar(types, 14, 2));
+//        decks.get(0).createCards(types, 14, 1);
         prepareDeck();
         viewM = new MainView(this);
         viewM.setVisible(false);
@@ -279,25 +199,12 @@ public final class Panjpar {
     }
     
     /**
-     * Metodo para guardar el estado de un juego
-     */
-    public void saveGame(){
-        Boolean att = getPlayerOne() == getAttacker();
-        if(files.saveGame(getPlayerOne(), getPlayerTwo(), getDeck(), getRound(),
-                att)){
-            this.viewM.saved();
-        } else {
-            this.viewM.showFileError();
-        }
-    }
-    
-    /**
      * Metodo para cargar el estado de un juego
      * @param fileName String de numero de id del archivo
      */
+    @Override
     public void loadGame(String fileName){
-        if(files.readFile(this, fileName)){
-            deck.setTrumpType(deck.getTrumpCard().getType());
+        if(files.readFile(fileName)){
             this.viewM.loaded();
             this.viewM.updateTrumpCard();
             this.viewM.updateUI();
@@ -305,13 +212,5 @@ public final class Panjpar {
             this.viewM.showFileError();
         }
     }
-    
-    /**
-     * Metodo main
-     * @param args String[]
-     */
-    public static void main(String[] args){
-        Panjpar game = new Panjpar();
-        game.run();
-    }
+
 }
