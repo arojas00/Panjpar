@@ -12,7 +12,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Controller.Panjpar</mainClass>
+                            <mainClass>Controller.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -23,6 +23,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <exec.mainClass>panjpar.panjpar.Panjpar</exec.mainClass>
+        <exec.mainClass>panjpar.panjpar.Main</exec.mainClass>
     </properties>
 </project>
