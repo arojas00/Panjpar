@@ -1,7 +1,7 @@
 # Panjpar
 Projecto para diseño de software - juego Panjpar
 
-El branch actualizado para el MARDA se encuentra en el branch Framework
+El código actualizado para el MARDA se encuentra en el branch Framework.
 
 ## Ejecución
 Para ejecutar el programa puede utilizarse el ejecutable que se encuentra en la carpeta raíz del proyecto. 
