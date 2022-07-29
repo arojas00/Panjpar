@@ -1,7 +1,7 @@
 # Panjpar
 Projecto para diseño de software - juego Panjpar
 
-El branch actualizado con la última versión del programa es el branch main.
+El branch actualizado para el MARDA se encuentra en el branch Framework
 
 ## Ejecución
 Para ejecutar el programa puede utilizarse el ejecutable que se encuentra en la carpeta raíz del proyecto. 
