@@ -64,8 +64,7 @@ public abstract class Files {
     }
     
     /**
-     * Metodo que asigna todas las cartas del deck a un String, junto a su
-     * contador y el valor de trumpCard
+     * Metodo que asigna todas las cartas de un grupo de cartas a una hilera
      * @param group
      * @return String
      */

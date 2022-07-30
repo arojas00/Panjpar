@@ -12,13 +12,21 @@ import java.util.Objects;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class ValidatorPanjpar extends Validator<PlayerPanjpar>{
 
+    /**
+     * Metodo para verificar la validez de la mesa
+     * @param attacker
+     * @param defender
+     * @param round
+     * @param trumpType Argumento opcional, necesario para Panjpar
+     * @return
+     */
     @Override
     public Boolean checkTable(PlayerPanjpar attacker, PlayerPanjpar defender, 
-            Boolean round, String trumpType) {
+            Boolean round, String... trumpType) {
         ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
         if(round){
@@ -85,9 +93,16 @@ public class ValidatorPanjpar extends Validator<PlayerPanjpar>{
         return valid;
     }
 
+    /**
+     * Método para verificar la validez de la jugada y el resultado de esta
+     * @param attacker
+     * @param defender
+     * @param trumpType Argumento opcional, necesario para Panjpar
+     * @return
+     */
     @Override
     public Boolean checkPlay(PlayerPanjpar attacker, PlayerPanjpar defender, 
-            String trumpType) {
+            String... trumpType) {
         Boolean victory = false;
         int victoryCount = 0;
         int size = attacker.getTable().getCards().size();
@@ -132,6 +147,12 @@ public class ValidatorPanjpar extends Validator<PlayerPanjpar>{
         return victory;
     }
 
+    /**
+     * Método para verificar si hay ganador
+     * @param attacker
+     * @param defender
+     * @return
+     */
     @Override
     public int checkWinner(PlayerPanjpar attacker, PlayerPanjpar defender) {
         if(defender.getHand().isEmpty() && 

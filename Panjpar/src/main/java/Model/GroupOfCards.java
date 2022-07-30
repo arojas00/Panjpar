@@ -7,7 +7,7 @@ package Model;
 import java.util.ArrayList;
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class GroupOfCards {
     private ArrayList<Card> cards;
@@ -16,14 +16,28 @@ public class GroupOfCards {
         cards = new ArrayList<>();
     }
 
+    /**
+     * Getter de ArrayList de cartas
+     * @return cards
+     */
     public ArrayList<Card> getCards() {
         return cards;
     }
 
+    /**
+     * Setter de ArrayList de cartas
+     * @param cards
+     */
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
     
+    /**
+     * Método para crear un grupo de cartas con los limites y valores seleccionados
+     * @param types
+     * @param end
+     * @param start 
+     */
     public void createCards(ArrayList<String> types, int end, int start){
         int idCounter = 0;
         for(String aux : types){
@@ -33,6 +47,9 @@ public class GroupOfCards {
         }
     }
     
+    /**
+     * Método para revolver el grupo de cartas
+     */
     public void shuffle(){
         Card aux = null;
         for(int i = 0; i < cards.size(); i++){
@@ -43,10 +60,19 @@ public class GroupOfCards {
         }
     }
     
+    /**
+     * Método que verifica si el grupo de cartas está vacío
+     * @return 
+     */
     public Boolean isEmpty(){
         return cards.isEmpty();
     };
     
+    /**
+     * Método para obtener una carta del grupo en la posición indicada
+     * @param index
+     * @return Card
+     */
     public Card getCard(int index){
         return getCards().get(index);
     }

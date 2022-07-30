@@ -6,17 +6,38 @@ package Model;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  * @param <TypeOfPlayer>
  */
 public abstract class Validator<TypeOfPlayer>{
     
-    public abstract Boolean checkTable(TypeOfPlayer attacker, 
-            TypeOfPlayer defender, Boolean round, String trumpType);
+    /**
+     * Metodo para verificar la validez de la mesa
+     * @param playerOne
+     * @param playerTwo
+     * @param round
+     * @param trumpType Argumento opcional, necesario para Panjpar
+     * @return 
+     */
+    public abstract Boolean checkTable(TypeOfPlayer playerOne, 
+            TypeOfPlayer playerTwo, Boolean round, String... trumpType);
     
-    public abstract Boolean checkPlay(TypeOfPlayer attacker, 
-            TypeOfPlayer defender, String trumpType);
+    /**
+     * Método para verificar la validez de la jugada y el resultado de esta
+     * @param playerOne
+     * @param playerTwo
+     * @param trumpType Argumento opcional, necesario para Panjpar
+     * @return 
+     */
+    public abstract Boolean checkPlay(TypeOfPlayer playerOne, 
+            TypeOfPlayer playerTwo, String... trumpType);
     
+    /**
+     * Método para verificar si hay ganador
+     * @param one
+     * @param two
+     * @return 
+     */
     public abstract int checkWinner(TypeOfPlayer one, TypeOfPlayer two);
     
 }

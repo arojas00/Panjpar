@@ -7,8 +7,8 @@ package View;
 import java.util.ArrayList;
 
 /**
- *
- * @author jafet
+ * Contenedor de grupos de vistas frontales de las cartas
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class GroupOfCardView {
     private ArrayList<CardView> cards;

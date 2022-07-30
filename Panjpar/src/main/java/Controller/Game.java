@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  * @param <TypeOfDeck>
  * @param <TypeOfPlayer>
  */
@@ -26,62 +26,122 @@ public abstract class Game<TypeOfDeck, TypeOfPlayer> {
     public Files files;
     public Validator validator;
 
+    /**
+     * Getter PlayerOne
+     * @return PlayerOne
+     */
     public TypeOfPlayer getPlayerOne() {
         return playerOne;
     }
 
+    /**
+     * Setter PlayerOne
+     * @param playerOne
+     */
     public void setPlayerOne(TypeOfPlayer playerOne) {
         this.playerOne = playerOne;
     }
 
+    /**
+     * Getter PlayerTwo
+     * @return PlayerTwo
+     */
     public TypeOfPlayer getPlayerTwo() {
         return playerTwo;
     }
 
+    /**
+     * Setter PlayerTwo
+     * @param playerTwo
+     */
     public void setPlayerTwo(TypeOfPlayer playerTwo) {
         this.playerTwo = playerTwo;
     }
 
+    /**
+     * Getter GroupOfDecks
+     * @return decks
+     */
     public ArrayList<TypeOfDeck> getDecks() {
         return decks;
     }
 
+    /**
+     * Setter GroupOfDecks
+     * @param decks
+     */
     public void setDecks(ArrayList<TypeOfDeck> decks) {
         this.decks = decks;
     }
 
+    /**
+     * Getter ViewP
+     * @return viewP
+     */
     public WhoStartsView getViewP() {
         return viewP;
     }
 
+    /**
+     * Setter ViewP
+     * @param viewP
+     */
     public void setViewP(WhoStartsView viewP) {
         this.viewP = viewP;
     }
-
+    
+    /**
+     * Getter ViewM
+     * @return viewM
+     */
     public MainView getViewM() {
         return viewM;
     }
 
+    /**
+     * Setter ViewM
+     * @param viewM
+     */
     public void setViewM(MainView viewM) {
         this.viewM = viewM;
     }
 
+    /**
+     * Setter round
+     * @return round
+     */
     public Boolean getRound() {
         return round;
     }
 
+    /**
+     * Setter round
+     * @param round 
+     */
     public void setRound(Boolean round) {
         this.round = round;
     }
 
+    /**
+     * Getter Files
+     * @return files
+     */
     public Files getFiles() {
         return files;
     }
 
+    /**
+     * Setter Files
+     * @param files
+     */
     public void setFiles(Files files) {
         this.files = files;
     }
     
+    /**
+     * Método abstracto para definir que usuario inicia
+     * @param init 
+     */
     public abstract void setWhoStarts(int init);
     
     /**
@@ -101,7 +161,7 @@ public abstract class Game<TypeOfDeck, TypeOfPlayer> {
      */
     public abstract void startGame();
     
-        /**
+    /**
      * Metodo prepara el deck
      */
     public abstract void prepareDeck();

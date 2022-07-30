@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class FilesPanjpar extends Files{
     private Panjpar game;
@@ -30,6 +30,10 @@ public class FilesPanjpar extends Files{
         this.game = game;
     }
     
+    /**
+     * Método para guardar el estado del juego
+     * @return 
+     */
     @Override
     public Boolean saveGame() {
         Boolean result = true;
@@ -76,6 +80,11 @@ public class FilesPanjpar extends Files{
         return result;
     }
 
+    /**
+     * Método para cargar el estado del juego
+     * @param fileName
+     * @return 
+     */
     @Override
     public Boolean readFile(String fileName) {
         Boolean result = true;

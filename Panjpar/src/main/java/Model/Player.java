@@ -30,12 +30,26 @@ public abstract class Player {
         this.id = id;
     }
     
+    /**
+     * Getter de ArrayList de GroupOfCards
+     * @return group
+     */
     public ArrayList<GroupOfCards> getGroup() {
         return group;
     }
 
+    /**
+     * Setter de ArrayList de GroupOfCards
+     * @param group 
+     */
     public void setGroup(ArrayList<GroupOfCards> group) {
         this.group = group;
     }
+    
+    /**
+     * Método abstracto para seleccionar una carta
+     * @param card 
+     */
+    public abstract void selectCard(Card card);
     
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class PlayerPanjpar extends Player{
     /**
@@ -60,6 +60,7 @@ public class PlayerPanjpar extends Player{
      * Metodo para pasar cartas de la mano a la mesa y viceversa
      * @param card Carta seleccionada
      */
+    @Override
     public void selectCard(Card card){
         int position = -1;
         for (int i = 0; i < getHand().getCards().size(); i++) {

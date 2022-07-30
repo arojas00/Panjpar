@@ -6,7 +6,7 @@ package Controller;
 
 /**
  *
- * @author jafet
+ * @author Adrian Rojas, Javier Donato, Jafet Picado
  */
 public class Main {
     public static void main(String[] args){

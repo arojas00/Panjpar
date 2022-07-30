@@ -78,7 +78,7 @@ public class Panjpar extends Game<DeckPanjpar, PlayerPanjpar>{
         return attacker;
     }
     
-/**
+    /**
      * Metodo selecciona al atacante
      * @param attacker Player
      */
