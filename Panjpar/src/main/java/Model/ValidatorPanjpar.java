@@ -26,7 +26,7 @@ public class ValidatorPanjpar extends Validator<PlayerPanjpar>{
      */
     @Override
     public Boolean checkTable(PlayerPanjpar attacker, PlayerPanjpar defender, 
-            Boolean round, String... trumpType) {
+            Boolean round, String trumpType) {
         ArrayList<Integer> values = new ArrayList<>();
         Boolean valid = false;
         if(round){
@@ -102,7 +102,7 @@ public class ValidatorPanjpar extends Validator<PlayerPanjpar>{
      */
     @Override
     public Boolean checkPlay(PlayerPanjpar attacker, PlayerPanjpar defender, 
-            String... trumpType) {
+            String trumpType) {
         Boolean victory = false;
         int victoryCount = 0;
         int size = attacker.getTable().getCards().size();

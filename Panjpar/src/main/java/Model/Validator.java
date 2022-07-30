@@ -20,7 +20,7 @@ public abstract class Validator<TypeOfPlayer>{
      * @return 
      */
     public abstract Boolean checkTable(TypeOfPlayer playerOne, 
-            TypeOfPlayer playerTwo, Boolean round, String... trumpType);
+            TypeOfPlayer playerTwo, Boolean round, String trumpType);
     
     /**
      * Método para verificar la validez de la jugada y el resultado de esta
@@ -30,7 +30,7 @@ public abstract class Validator<TypeOfPlayer>{
      * @return 
      */
     public abstract Boolean checkPlay(TypeOfPlayer playerOne, 
-            TypeOfPlayer playerTwo, String... trumpType);
+            TypeOfPlayer playerTwo, String trumpType);
     
     /**
      * Método para verificar si hay ganador
