@@ -3,6 +3,8 @@ Projecto para diseño de software - juego Panjpar
 
 El código actualizado para el MARDA se encuentra en el branch Framework.
 
+En la carpeta Design se encuentra el UML y el documento con los pricipios SOLID del proyecto.
+
 ## Ejecución
 Para ejecutar el programa puede utilizarse el ejecutable que se encuentra en la carpeta raíz del proyecto. 
 
